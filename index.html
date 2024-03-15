@@ -1,0 +1,3386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/site.css" asp-append-version="true" />
+    <link rel="shortcut icon" type="image/png" href="/images/logo2.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script>
+      const navbar = document.getElementById("sticky-navbar");
+      const navbarHeight = navbar.offsetHeight;
+
+      window.onscroll = function () {
+        if (window.pageYOffset > navbarHeight) {
+          navbar.classList.add("sticky");
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      };
+    </script>
+    <style>
+      @font-face {
+        font-family: "SVN-Impress";
+        src: url("fonts/SVN-Impress.otf");
+      }
+
+      main {
+        background-color: #f5fdff;
+        background: url("images/PatternBell.png") no-repeat, #f5fdff;
+      }
+
+      #sticky-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--blue-500, #2685dd);
+        z-index: 1000; /* Ensure the navbar is above other elements */
+        transition: top 0.3s; /* Add a smooth transition effect */
+      }
+
+      .navbar-expand-lg .navbar-nav .nav-link {
+        padding-top: 1.3rem !important;
+      }
+
+      body::after {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-size: 100%;
+        font-size: 10px;
+      }
+
+      .btn-nav:hover {
+        color: var(--blue-300, #f2c062) !important;
+        text-underline-offset: 0.7rem;
+        cursor: pointer;
+      }
+
+      .btn-nav.active {
+        color: var(--blue-300, #f2c062) !important;
+        text-underline-offset: 0.7rem;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .btn-nav:focus {
+        color: var(--blue-300, #f2c062) !important;
+        text-underline-offset: 0.7rem;
+        cursor: pointer;
+      }
+
+      .to-top-arrow {
+        width: 88px;
+        height: 88px;
+        position: fixed;
+        right: 50px;
+        bottom: 10px;
+        display: block;
+      }
+
+      .stop-scrolling {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .warning {
+        display: flex;
+        padding: 8px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        position: fixed;
+        top: 65px;
+        right: 15px;
+        margin-left: auto;
+        border-radius: 6px;
+        opacity: 0.8;
+        background: #3a3a3a;
+        width: 239px;
+        z-index: 100;
+      }
+
+      .warning-tablet-box {
+        padding: 8px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        top: 65px;
+        right: 15px;
+        border-radius: 6px;
+        opacity: 0.800000011440929;
+        background: #3a3a3a;
+        width: 239px;
+      }
+
+      .warning-12-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+      }
+
+      .warning-12-number-box {
+        display: flex;
+        width: 70px;
+        height: 60px;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 6px;
+        background: #050505;
+      }
+
+      .warning-12-number-text {
+        flex: 1 0 0;
+        color: #fff;
+        /* H2: Regular */
+        font-family: SVN-Impress;
+        font-size: 39px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .warning-12-text {
+        color: #fff;
+        /* caption: Regular */
+        font-family: SVN-Impress;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 141px;
+      }
+
+      .warning-text {
+        align-self: stretch;
+        color: #fff;
+        text-align: justify;
+        /* caption 2: Regular */
+        font-family: SVN-Impress;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .to-top-arrow:hover {
+        cursor: pointer;
+      }
+
+      .btn-nav:active {
+        color: var(--blue-300, #f2c062) !important;
+        text-decoration: underline;
+        text-underline-offset: 7px;
+        cursor: pointer;
+      }
+
+      .btn-nav:focus {
+        color: var(--blue-300, #f2c062) !important;
+        text-decoration: underline;
+        text-underline-offset: 7px;
+      }
+
+      .text-footer {
+        color: #fff;
+        text-align: start;
+        /* Body text: Regular */
+        font-family: SVN-Impress;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 750px;
+      }
+
+      .nav-logo {
+        width: 265px;
+        height: 128px;
+        position: absolute;
+        right: 40vw;
+        bottom: -7rem;
+      }
+
+      .nav-box {
+        display: flex;
+        height: 100%;
+        width: 100%;
+      }
+
+      .fs-sidemenu {
+        display: flex;
+      }
+
+      .footer {
+        white-space: unset !important;
+        line-height: unset !important;
+        color: #ffffff !important;
+        position: unset !important;
+        margin: auto;
+      }
+
+      .nav .text-footer {
+        margin: auto;
+      }
+
+      .footer {
+        width: 100%;
+        display: flex;
+        padding: 60px 72px;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+        align-self: stretch;
+        background: #040404;
+        flex: 1 0 0%;
+      }
+
+      .container-footer {
+        display: flex;
+        flex-direction: row; /* Set the main direction to be horizontal */
+        justify-content: space-between; /* Spread the items horizontally */
+        align-items: flex-start; /* Align items at the top vertically */
+        gap: 60px;
+      }
+
+      .logo-footer-box {
+        display: flex;
+        padding-bottom: 48px;
+        flex-direction: column;
+        align-items: start;
+        gap: 24px;
+        width: 950px;
+      }
+
+      .logo-footer {
+        width: 244px;
+        height: 146px;
+      }
+
+      .social-box {
+        display: flex;
+        align-items: flex-end;
+        gap: 48px;
+      }
+
+      .footer-social-img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .footer-social-img:hover {
+        width: 48px;
+        height: 48px;
+      }
+
+      .policy-box {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 48px;
+      }
+
+      .policy-text {
+        color: #fff;
+        text-align: center;
+        /* H5: Regular */
+        font-family: SVN-Impress;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .policy-box > a {
+        text-decoration: none;
+      }
+
+      .navbar {
+        display: flex;
+        width: 100%;
+        height: 6.4rem;
+        padding: 0.8rem 12.8rem;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--blue-500, #2685dd);
+        border-bottom: none !important;
+      }
+
+      .btn-download-game {
+        width: 245px;
+        height: 70px;
+        position: absolute;
+        left: 50%;
+        top: 824px;
+        transform: translate(-50%, 0%);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background: url("images/button-download-game.png") no-repeat;
+        transition: 0.5s all;
+      }
+
+      .btn-download-game:hover {
+        cursor: pointer;
+        background: url("images/button-download-game-active.png") no-repeat;
+      }
+
+      .btn-download-game:active {
+        background: url("images/button-download-game-active.png") no-repeat;
+      }
+
+      .download-game {
+        background-size: cover !important;
+      }
+
+      .border-top {
+        border: unset !important;
+      }
+
+      .warning {
+        top: 80px;
+      }
+
+      .fs-navbar-toggler,
+      .fs-sidemenu-logo-box,
+      .btn-download-game {
+        display: none;
+      }
+
+      .fs-container {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .last-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 60px;
+        margin-top: 90px;
+      }
+
+      .small-box {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 60px;
+      }
+
+      .btn-light {
+        border: 0 !important;
+        font-weight: 600;
+      }
+
+      .row .intro > h3 {
+        font-weight: 600;
+      }
+
+      #pills-home-tab,
+      #pills-profile-tab {
+        font-weight: 600;
+      }
+
+      .btn-nav {
+        font-family: SVN-Impress;
+        font-size: 1.6rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: #fff !important;
+        display: flex;
+        padding: 0.4rem 1.2rem;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .max-width-100 {
+        max-width: 100%;
+      }
+
+      .width-100 {
+        width: 100%;
+      }
+
+      .fs-sidemenu {
+        width: 100%;
+        padding: 0 10vw;
+        justify-content: space-between;
+      }
+
+      .nav-box-1 {
+        gap: 60px;
+      }
+
+      .nav-box-2 {
+        margin-left: 0;
+        gap: 60px;
+      }
+
+      #loading-screen {
+        background: url(images/chu%C3%B4ng.png), #77ceff no-repeat;
+        height: 100vh;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        position: relative;
+        z-index: 9999;
+      }
+
+      #loading-screen svg {
+        width: 160px;
+        height: auto;
+      }
+
+      @media (min-width: 1920px) {
+        .fs-container {
+          max-width: 1920px;
+        }
+
+        .nav-logo {
+          right: 790px;
+        }
+      }
+
+      @media (max-width: 1720px) {
+        .fs-container {
+          max-width: 1920px;
+        }
+
+        .nav-box-1 {
+          gap: 60px;
+        }
+
+        .fs-sidemenu {
+          width: 100%;
+          padding: 0 6vw;
+          justify-content: space-between;
+        }
+
+        .nav-logo {
+          right: 40vw;
+        }
+
+        .nav-box-2 {
+          margin-left: 0;
+          gap: 60px;
+        }
+      }
+
+      @media (max-width: 1560px) {
+        .fs-container {
+          max-width: 1920px;
+        }
+
+        .nav-box-1 {
+          gap: 60px;
+        }
+
+        .fs-sidemenu {
+          width: 100%;
+          padding: 0 4vw;
+          justify-content: space-between;
+        }
+
+        .nav-logo {
+          right: 39vw;
+        }
+
+        .nav-box-2 {
+          margin-left: 0;
+          gap: 60px;
+        }
+      }
+      /*Tablet*/
+      @media only screen and (max-width: 1440px) {
+        header {
+          height: 7.2rem;
+        }
+
+        .btn-download-game {
+          top: 550px;
+        }
+
+        .to-top-arrow {
+          display: none;
+        }
+
+        .navbar {
+          width: 100%;
+          background: var(--blue-500, #2685dd);
+          height: 7.2rem;
+          padding: 0;
+        }
+
+        .nav-box-1 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 6rem;
+        }
+
+        .nav-box-2 {
+          margin-left: 47rem;
+          display: flex;
+          align-items: center;
+          gap: 6rem;
+        }
+
+        .fs-container {
+          max-width: 1440px;
+          width: 100%;
+        }
+
+        .nav-box {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .nav-box-brand-burger {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        .fs-navbar-toggler,
+        .fs-sidemenu-logo-box,
+        .btn-download-game {
+          display: block;
+        }
+
+        .nav-logo {
+          width: 12.7rem;
+          height: 6.4rem;
+          position: inherit;
+          margin-left: 3.2rem;
+        }
+
+        .navbar-toggler-icon {
+          width: 3.6rem;
+          height: 3.6rem;
+          background: url(images/hamburger.svg) !important;
+        }
+
+        .fs-navbar-toggler {
+          padding: 0.25rem 0.75rem;
+          font-size: 1.25rem;
+          line-height: 1;
+          background-color: transparent;
+          border: none;
+        }
+
+        .navbar {
+          width: 100%;
+          height: 72px;
+          z-index: 1001;
+        }
+
+        .fs-sidemenu {
+          margin-top: -4px;
+          display: none;
+          width: 100%;
+          max-width: 42.3rem;
+          position: absolute;
+          right: 0;
+          height: 87.5rem;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 6rem;
+          padding: 4.8rem 4.8rem;
+          justify-content: flex-start;
+          background: #f5fdff;
+          transition: 0.3s all;
+        }
+
+        .selected {
+          animation: slide-in 0.5s forwards;
+          -webkit-animation: slide-in 0.5s forwards;
+        }
+
+        .dismiss {
+          animation: slide-out 0.5s forwards;
+          -webkit-animation: slide-out 0.5s forwards;
+        }
+
+        .logo-footer-box {
+          width: 850px;
+        }
+        /*@keyframes slide-in {
+            0% {
+                -webkit-transform: translateX(100%);
+            }
+
+            100% {
+                -webkit-transform: translateX(0%);
+            }
+        }
+
+        @-webkit-keyframes slide-in {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes slide-out {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @-webkit-keyframes slide-out {
+            0% {
+                -webkit-transform: translateX(0%);
+            }
+
+            100% {
+                -webkit-transform: translateX(100%);
+            }
+        }*/
+
+        .navbar-toggler:hover {
+          border: none;
+        }
+
+        .navbar-toggler:active {
+          border: none;
+        }
+
+        .btn-nav {
+          color: #000 !important;
+          text-align: center;
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 1.6rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .fs-sidemenu-logo-box {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          align-self: stretch;
+        }
+
+        .fs-sidemenu-close {
+          width: 4.8rem;
+          height: 4.8rem;
+          stroke-width: 0.2rem;
+          stroke: var(--blue-400, #4097e9);
+          background: url("images/Cancel.svg");
+        }
+
+        .nav-box-1 {
+          display: flex;
+          width: 32.7rem;
+          flex-direction: column !important;
+          align-items: flex-start;
+          gap: 1.2rem;
+        }
+
+        .nav-box-2 {
+          display: flex;
+          width: 32.7rem;
+          flex-direction: column !important;
+          align-items: flex-start;
+          gap: 1.2rem;
+          margin-left: 0;
+          margin-top: -48px;
+        }
+      }
+
+      @media only screen and (max-width: 1160px) {
+        .footer {
+          padding: 30px 32px;
+        }
+
+        .logo-footer {
+          width: 178px;
+          height: 106px;
+        }
+
+        .logo-footer-box {
+          display: flex;
+          padding-bottom: 0px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 16px;
+          align-self: stretch;
+          padding-bottom: 48px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .last-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 60px;
+          align-self: stretch;
+          flex-direction: row-reverse;
+          margin-top: -16px;
+        }
+
+        .container-footer {
+          display: flex;
+          flex-direction: column;
+          margin-left: 72px;
+          margin-right: 72px;
+        }
+
+        .small-box {
+          display: flex;
+          align-items: flex-start;
+          gap: 40px;
+        }
+
+        .footer-social-img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      @media only screen and (max-width: 975px) {
+        .text-footer {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+
+        .to-top-arrow {
+          display: none;
+        }
+
+        .warning {
+          display: none;
+        }
+
+        .warning-tablet-box {
+          display: flex;
+        }
+
+        .fs-container {
+          max-width: 975px;
+        }
+
+        .container-footer,
+        .logo-footer-box {
+          width: 100%;
+        }
+
+        .footer {
+          padding: 30px 32px;
+        }
+
+        .btn-download-game-mobile {
+          top: 520px !important;
+        }
+
+        .logo-footer {
+          width: 178px;
+          height: 106px;
+        }
+
+        .logo-footer-box {
+          display: flex;
+          padding-bottom: 0px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 16px;
+          align-self: stretch;
+        }
+
+        .last-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 60px;
+          align-self: stretch;
+          flex-direction: row-reverse;
+        }
+
+        .container-footer {
+          display: flex;
+          flex-direction: column;
+          margin: 60px 72px;
+        }
+
+        .small-box {
+          display: flex;
+          align-items: flex-start;
+          gap: 40px;
+        }
+
+        .footer-social-img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      @media only screen and (max-width: 585px) {
+        .container-footer {
+          margin: 60px 24px;
+        }
+
+        .logo-footer-box {
+          align-items: center;
+          border-bottom: 0px;
+        }
+
+        .logo-footer {
+          width: 164px;
+          height: 98px;
+        }
+
+        .text-footer {
+          font-size: 13px;
+          margin-bottom: 0px;
+        }
+
+        .last-footer {
+          flex-direction: column;
+          align-items: center;
+          margin-top: 0px;
+          border-bottom: 0px;
+        }
+
+        .small-box {
+          align-items: center;
+        }
+
+        .policy-text {
+          font-size: 13px;
+        }
+
+        .footer-social-img {
+          width: 28px;
+          height: 28px;
+        }
+
+        .warning-tablet-box {
+          width: 176px;
+        }
+
+        .warning-12-text {
+          font-size: 13px;
+        }
+
+        .warning-text {
+          font-size: 10px;
+        }
+      }
+      /*EndTable*/
+    </style>
+  </head>
+
+  <body>
+    <!-- <div id="loading-screen">
+        <svg id="eUklZ4dNQcr1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 160 218.95" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+            <image id="eUklZ4dNQcr2" width="135" height="135" xlink:href="data:image/png;base64,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" preserveAspectRatio="xMidYMid meet" transform="translate(0 0)"></image>
+            <g transform="translate(.000001-15.234851)"><path d="M1282.89,411.68v-.53c0-1.37.32-1.52,1.84-1.52c2.39,0,3,.37,3,1.52c0,.1,0,.37-.06.81-.243534,1.896985-.367113,3.807448-.37,5.72v.37l.09,8.68c-.044301.338006.101931.672799.38.87.672576.207186,1.378963.2819,2.08.22h3.58.24c.75,0,.91.43.91,1.55.072124.555879-.025479,1.120578-.28,1.62-.16.19-.72.28-1.68.31l-7.93.1c-1,0-1.46-.47-1.5-1.5l-.3-18.22Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1296.89,418.37c.942097-1.346962,2.496801-2.131824,4.14-2.09c2.146029.093424,4.245409.656673,6.15,1.65c2.12,1.21,2.93,2.74,2.93,5.94c0,5-2.46,7.77-7,7.77-2.085987.094519-4.119954-.667767-5.63-2.11-1.450876-1.541669-2.215659-3.605139-2.12-5.72-.102685-1.93231.43512-3.844505,1.53-5.44Zm2.67,6.31c0,3.33,1,5.13,2.83,5.13c1.136748-.013195,2.180574-.630348,2.74-1.62.770096-1.257972,1.149451-2.716227,1.09-4.19c0-3.36-1.21-5.6-3.08-5.6-2.14,0-3.58,2.42-3.58,6.28Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1324.38,424.46v4.23c0,.72,0,1.43.09,2.11v.2c0,.59-.34.78-2.67.78l-.9-.93c-.16-.16-.25-.22-.37-.22-.100916.01927-.196448.060213-.28.12-.97512.622064-2.113719.938921-3.27.91-3.08,0-5.16-1.71-5.16-4.17s2.18-4.11,6-4.39l2.39-.15c.66-.09.78-.22.78-1.8c0-1.84-.68-2.9-1.9-2.9s-2.17,1.12-2.83,2.86c-.048126.134156-.088197.271066-.12.41-.28.84-.68,1.27-1.21,1.27-2.24,0-2.83-.21-2.83-.87.044495-.317144.149752-.622727.31-.9.119477-.198193.223132-.405503.31-.62c0-.09.09-.22.16-.41.257902-.65769.593624-1.282135,1-1.86.848714-1.181699,2.248542-1.839997,3.7-1.74c1.953668-.102328,3.890513.408104,5.54,1.46.479152.406519.827127.945881,1,1.55.25601,1.039527.360423,2.1106.31,3.18l-.05,1.88Zm-4.07.25c-1.214208.0189-2.386894.445011-3.33,1.21-.92197.587902-1.500196,1.587673-1.55,2.68c0,.78.43,1.18,1.3,1.18c1.022949-.009224,2.003488-.410028,2.74-1.12.812377-.676999,1.278451-1.682544,1.27-2.74c0-.84-.15-1.21-.43-1.21Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1338.1,431.58h-.22c-.5,0-.62-.15-.62-.68v-.9c-1.143264,1.114142-2.664225,1.756802-4.26,1.8-3.86,0-6.07-2.67-6.07-7.37c0-4.94,2.06-8,5.29-8c.674407.025605,1.34449.119416,2,.28l1.81.47c.049337-.011514.100663-.011514.15,0c.092979.011506.187021.011506.28,0c.34,0,.44-.19.44-.84v-3.51c.005788-.831837-.037621-1.663288-.13-2.49-.09-.84-.12-1.31-.12-1.34c0-.84.34-1.18,1.12-1.18.313233.027336.624057.077469.93.15l.93.1c.146096.018301.293904.018301.44,0c.226742.014254.437075.123077.579693.299925s.204412.40546.170307.630075v.22v2.11c-.1,4.14-.1,6.81-.1,6.94l.06,11.1c0,.16.07.68.07.9c0,.87-.22,1.12-.94,1.12h-.59l-1.22.19Zm-1-8.15c.02949-1.067139-.084871-2.133388-.34-3.17-.489709-.92767-1.41534-1.544757-2.46-1.64-2.11,0-3.17,2.45-3.17,7.33c0,2.46.87,3.83,2.49,3.83.993121-.02287,1.910525-.535867,2.45-1.37.709949-1.039612,1.061071-2.282586,1-3.54l.03-1.44Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1345.28,415.16c-.606798.000079-1.185375-.256259-1.592983-.70577s-.606286-1.050334-.547017-1.65423c-.043793-.612242.162218-1.216123.57106-1.67395s.985663-.730574,1.59894-.75605c.611731-.010691,1.202513.222791,1.641657.648798s.690456,1.009428.698343,1.621202c.022982,1.343281-1.027835,2.460607-2.37,2.52Zm1.93,14.56v.43c0,.81-.34,1.22-1.06,1.22-2.14,0-2.52-.1-2.52-.81c0-.22.07-1,.07-1.34l-.07-7.93c0-.62,0-1.28-.09-1.93s-.06-1.06-.06-1.12c0-.84.34-1.06,1.93-1.06s2,.1,2,.87v1.44l-.2,10.23Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1350.6,431.27c-.47,0-.65-.25-.65-.87c0-.12.09-1.37.25-3.7s.25-4.63.25-6.78c0-.87-.19-2.21-.19-2.46c0-.65.25-.84,1.46-.84.78,0,1.24,0,1.77,0l.07,1.27l1.21-.09c.546217-.079601,1.098168-.113052,1.65-.1c1.606771-.038187,3.184756.43066,4.51,1.34.853533.487825,1.577218,1.173782,2.11,2c.394525.899807.575905,1.878575.53,2.86.000223,1.96409-.103254,3.926822-.31,5.88-.06.53-.1.84-.1,1c0,.84-.24,1.12-1.12,1.12-1.58,0-2.48-.34-2.48-.87c0-.12,0-.46.09-1c.20691-1.849451.310404-3.709011.31-5.57c0-3.39-.62-4.72-2.24-4.72-1.242876.01004-2.424913.539419-3.26,1.46-.63.74-.84,2-.84,4.79c0,1.4,0,2.73.09,4v.37c0,.65-.12.87-1.34.87l-1.77.04Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1367.43,431.49l-.87-.81c-.095891-.057694-.180582-.132222-.25-.22-.41-.31-.59-.59-.59-.84.022216-.409484.242319-.78254.59-1l1.92-1.43c-1.239556-1.07562-1.932893-2.649385-1.89-4.29.048933-1.73111.530213-3.422467,1.4-4.92.500872-1.098673,1.624435-1.777575,2.83-1.71.924974.034439,1.837628.22373,2.7.56l1.71-2.11c.5-.63.94-.91,1.4-.91.431979.033016.843619.196974,1.18.47.44.31.66.59.66.87-.111659.265237-.282719.5013-.5.69l-1.77,1.74c2.018487,1.129261,3.240586,3.288175,3.17,5.6c0,3.07-2.18,5-5.75,5-.28,0-1-.09-1.31-.09s-1,.59-1,.84.66.56,1.93.78c1.06.18,1.93.37,2.64.52c1.423861.24863,2.783766.778992,4,1.56.666937.649049,1.008165,1.56266.93,2.49.076119,1.484307-.85533,2.834292-2.27,3.29-2.250667.955042-4.675292,1.431794-7.12,1.4-4.73,0-7.71-1.58-7.71-4c0-1,.37-1.55,2.27-2.55l1.7-.93Zm5.81,1.18c-.84-.15-1.49-.31-1.52-.31-.349364.089112-.685556.223588-1,.4l-2.36,1.28c-.59.28-.72.5-.72.84c0,.84.72,1.12,2.83,1.12c4,0,6.53-.65,6.53-1.74c0-.5-.52-.87-1.58-1.09-.094771-.012574-.188398-.032637-.28-.06l-1.9-.44Zm-.15-13.84c-.925779.012311-1.786081.479867-2.3,1.25-.669102.854875-1.022357,1.914639-1,3c0,2,.78,3,2.18,3c.945449-.001329,1.847651-.396268,2.49-1.09.678369-.731671,1.038108-1.702968,1-2.7.08-1.93-.97-3.46-2.37-3.46Z" transform="translate(-1265.31-220)" fill="#fff"></path><path d="M1388,429.09c-.004978.716706-.311343,1.398228-.844078,1.877691s-1.242654.712593-1.955922.642309c-.682233.073189-1.363754-.144257-1.877531-.599045s-.812323-1.104882-.822469-1.790955c-.040052-.723248.226969-1.429815.735343-1.945806s1.210894-.793487,1.934657-.764194c.729328-.084003,1.459329.151668,2.001861.646273s.844522,1.199761.828139,1.933727Z" transform="translate(-1265.31-220)" fill="#fff"></path><path id="eUklZ4dNQcr12" d="M1397.66,429.09c-.004978.716706-.311343,1.398228-.844078,1.877691s-1.242654.712593-1.955922.642309c-.683853.076211-1.368096-.139862-1.884161-.594989s-.815972-1.106995-.825839-1.795011c-.037122-.724212.23225-1.430612.742156-1.946226s1.213263-.792832,1.937844-.763774c.729328-.084003,1.459329.151668,2.001861.646273s.844522,1.199761.828139,1.933727Z" transform="translate(-1265.31-220)" opacity="0.95" fill="#fff"></path><path id="eUklZ4dNQcr13" d="M1407.36,429.09c-.004978.716706-.311343,1.398228-.844078,1.877691s-1.242654.712593-1.955922.642309c-.683853.076211-1.368096-.139862-1.884161-.594989s-.815972-1.106995-.825839-1.795011c-.037122-.724212.23225-1.430612.742156-1.946226s1.213263-.792832,1.937844-.763774c.729328-.084003,1.459329.151668,2.001861.646273s.844522,1.199761.828139,1.933727Z" transform="translate(-1265.31-220)" opacity="0.9175" fill="#fff"></path></g>
+            <script>
+!function (t, n){ "object" == typeof exports &amp;&amp; "undefined" != typeof module ? module.exports = n() : "function" == typeof __SVGATOR_DEFINE__ &amp;&amp; __SVGATOR_DEFINE__.amd ? __SVGATOR_DEFINE__(n) : ((t = "undefined" != typeof globalThis ? globalThis : t || self).__SVGATOR_PLAYER__ = t.__SVGATOR_PLAYER__ || {}, t.__SVGATOR_PLAYER__["5c7f360c"] = n()) }(this, (function () { "use strict"; function t(t, n) { var e = Object.keys(t); if (Object.getOwnPropertySymbols) { var r = Object.getOwnPropertySymbols(t); n &amp;&amp; (r = r.filter((function (n) { return Object.getOwnPropertyDescriptor(t, n).enumerable }))), e.push.apply(e, r) } return e } function n(n) { for (var e = 1; e &lt; arguments.length; e++) { var r = null != arguments[e] ? arguments[e] : {}; e % 2 ? t(Object(r), !0).forEach((function (t) { u(n, t, r[t]) })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(n, Object.getOwnPropertyDescriptors(r)) : t(Object(r)).forEach((function (t) { Object.defineProperty(n, t, Object.getOwnPropertyDescriptor(r, t)) })) } return n } function e(t) { return (e = "function" == typeof Symbol &amp;&amp; "symbol" == typeof Symbol.iterator ? function (t) { return typeof t } : function (t) { return t &amp;&amp; "function" == typeof Symbol &amp;&amp; t.constructor === Symbol &amp;&amp; t !== Symbol.prototype ? "symbol" : typeof t })(t) } function r(t, n) { if (!(t instanceof n)) throw new TypeError("Cannot call a class as a function") } function i(t, n) { for (var e = 0; e &lt; n.length; e++) { var r = n[e]; r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r &amp;&amp; (r.writable = !0), Object.defineProperty(t, r.key, r) } } function o(t, n, e) { return n &amp;&amp; i(t.prototype, n), e &amp;&amp; i(t, e), t } function u(t, n, e) { return n in t ? Object.defineProperty(t, n, { value: e, enumerable: !0, configurable: !0, writable: !0 }) : t[n] = e, t } function a(t) { return (a = Object.setPrototypeOf ? Object.getPrototypeOf : function (t) { return t.__proto__ || Object.getPrototypeOf(t) })(t) } function l(t, n) { return (l = Object.setPrototypeOf || function (t, n) { return t.__proto__ = n, t })(t, n) } function s() { if ("undefined" == typeof Reflect || !Reflect.construct) return !1; if (Reflect.construct.sham) return !1; if ("function" == typeof Proxy) return !0; try { return Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], (function () { }))), !0 } catch (t) { return !1 } } function f(t, n, e) { return (f = s() ? Reflect.construct : function (t, n, e) { var r = [null]; r.push.apply(r, n); var i = new (Function.bind.apply(t, r)); return e &amp;&amp; l(i, e.prototype), i }).apply(null, arguments) } function c(t, n) { if (n &amp;&amp; ("object" == typeof n || "function" == typeof n)) return n; if (void 0 !== n) throw new TypeError("Derived constructors may only return object or undefined"); return function (t) { if (void 0 === t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return t }(t) } function h(t, n, e) { return (h = "undefined" != typeof Reflect &amp;&amp; Reflect.get ? Reflect.get : function (t, n, e) { var r = function (t, n) { for (; !Object.prototype.hasOwnProperty.call(t, n) &amp;&amp; null !== (t = a(t));); return t }(t, n); if (r) { var i = Object.getOwnPropertyDescriptor(r, n); return i.get ? i.get.call(e) : i.value } })(t, n, e || t) } function v(t) { return function (t) { if (Array.isArray(t)) return y(t) }(t) || function (t) { if ("undefined" != typeof Symbol &amp;&amp; null != t[Symbol.iterator] || null != t["@iterator"]) return Array.from(t) }(t) || function (t, n) { if (!t) return; if ("string" == typeof t) return y(t, n); var e = Object.prototype.toString.call(t).slice(8, -1); "Object" === e &amp;&amp; t.constructor &amp;&amp; (e = t.constructor.name); if ("Map" === e || "Set" === e) return Array.from(t); if ("Arguments" === e || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e)) return y(t, n) }(t) || function () { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.") }() } function y(t, n) { (null == n || n &gt; t.length) &amp;&amp; (n = t.length); for (var e = 0, r = new Array(n); e &lt; n; e++)r[e] = t[e]; return r } function g(t, n, e) { if (Number.isInteger(t)) return t; var r = Math.pow(10, n); return Math[e]((+t + Number.EPSILON) * r) / r } Number.isInteger || (Number.isInteger = function (t) { return "number" == typeof t &amp;&amp; isFinite(t) &amp;&amp; Math.floor(t) === t }), Number.EPSILON || (Number.EPSILON = 2220446049250313e-31); var d = p(Math.pow(10, -6)); function p(t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 6; return g(t, n, "round") } function m(t, n) { var e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : d; return Math.abs(t - n) &lt; e } p(Math.pow(10, -2)), p(Math.pow(10, -4)); var b = Math.PI / 180; function w(t) { return t } function A(t, n, e) { var r = 1 - e; return 3 * e * r * (t * r + n * e) + e * e * e } function _() { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 0, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0, e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : 1, r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] ? arguments[3] : 1; return t &lt; 0 || t &gt; 1 || e &lt; 0 || e &gt; 1 ? null : m(t, n) &amp;&amp; m(e, r) ? w : function (i) { if (i &lt;= 0) return t &gt; 0 ? i * n / t : 0 === n &amp;&amp; e &gt; 0 ? i * r / e : 0; if (i &gt;= 1) return e &lt; 1 ? 1 + (i - 1) * (r - 1) / (e - 1) : 1 === e &amp;&amp; t &lt; 1 ? 1 + (i - 1) * (n - 1) / (t - 1) : 1; for (var o, u = 0, a = 1; u &lt; a;) { var l = A(t, e, o = (u + a) / 2); if (m(i, l)) break; l &lt; i ? u = o : a = o } return A(n, r, o) } } function x() { return 1 } function k(t) { return 1 === t ? 1 : 0 } function S() { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 1, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0; if (1 === t) { if (0 === n) return k; if (1 === n) return x } var e = 1 / t; return function (t) { return t &gt;= 1 ? 1 : (t += n * e) - t % e } } var O = Math.sin, j = Math.cos, M = Math.acos, E = Math.asin, P = Math.tan, I = Math.atan2, R = Math.PI / 180, F = 180 / Math.PI, N = Math.sqrt, T = function () { function t() { var n = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 1, e = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0, i = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : 0, o = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] ? arguments[3] : 1, u = arguments.length &gt; 4 &amp;&amp; void 0 !== arguments[4] ? arguments[4] : 0, a = arguments.length &gt; 5 &amp;&amp; void 0 !== arguments[5] ? arguments[5] : 0; r(this, t), this.m = [n, e, i, o, u, a], this.i = null, this.w = null, this.s = null } return o(t, [{ key: "determinant", get: function () { var t = this.m; return t[0] * t[3] - t[1] * t[2] } }, { key: "isIdentity", get: function () { if (null === this.i) { var t = this.m; this.i = 1 === t[0] &amp;&amp; 0 === t[1] &amp;&amp; 0 === t[2] &amp;&amp; 1 === t[3] &amp;&amp; 0 === t[4] &amp;&amp; 0 === t[5] } return this.i } }, { key: "point", value: function (t, n) { var e = this.m; return { x: e[0] * t + e[2] * n + e[4], y: e[1] * t + e[3] * n + e[5] } } }, { key: "translateSelf", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 0, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0; if (!t &amp;&amp; !n) return this; var e = this.m; return e[4] += e[0] * t + e[2] * n, e[5] += e[1] * t + e[3] * n, this.w = this.s = this.i = null, this } }, { key: "rotateSelf", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 0; if (t %= 360) { var n = O(t *= R), e = j(t), r = this.m, i = r[0], o = r[1]; r[0] = i * e + r[2] * n, r[1] = o * e + r[3] * n, r[2] = r[2] * e - i * n, r[3] = r[3] * e - o * n, this.w = this.s = this.i = null } return this } }, { key: "scaleSelf", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 1, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 1; if (1 !== t || 1 !== n) { var e = this.m; e[0] *= t, e[1] *= t, e[2] *= n, e[3] *= n, this.w = this.s = this.i = null } return this } }, { key: "skewSelf", value: function (t, n) { if (n %= 360, (t %= 360) || n) { var e = this.m, r = e[0], i = e[1], o = e[2], u = e[3]; t &amp;&amp; (t = P(t * R), e[2] += r * t, e[3] += i * t), n &amp;&amp; (n = P(n * R), e[0] += o * n, e[1] += u * n), this.w = this.s = this.i = null } return this } }, { key: "resetSelf", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 1, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0, e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : 0, r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] ? arguments[3] : 1, i = arguments.length &gt; 4 &amp;&amp; void 0 !== arguments[4] ? arguments[4] : 0, o = arguments.length &gt; 5 &amp;&amp; void 0 !== arguments[5] ? arguments[5] : 0, u = this.m; return u[0] = t, u[1] = n, u[2] = e, u[3] = r, u[4] = i, u[5] = o, this.w = this.s = this.i = null, this } }, { key: "recomposeSelf", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : null, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : null, e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : null, r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] ? arguments[3] : null, i = arguments.length &gt; 4 &amp;&amp; void 0 !== arguments[4] ? arguments[4] : null; return this.isIdentity || this.resetSelf(), t &amp;&amp; (t.x || t.y) &amp;&amp; this.translateSelf(t.x, t.y), n &amp;&amp; this.rotateSelf(n), e &amp;&amp; (e.x &amp;&amp; this.skewSelf(e.x, 0), e.y &amp;&amp; this.skewSelf(0, e.y)), !r || 1 === r.x &amp;&amp; 1 === r.y || this.scaleSelf(r.x, r.y), i &amp;&amp; (i.x || i.y) &amp;&amp; this.translateSelf(i.x, i.y), this } }, { key: "decompose", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 0, n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 0, e = this.m, r = e[0] * e[0] + e[1] * e[1], i = [[e[0], e[1]], [e[2], e[3]]], o = N(r); if (0 === o) return { origin: { x: p(e[4]), y: p(e[5]) }, translate: { x: p(t), y: p(n) }, scale: { x: 0, y: 0 }, skew: { x: 0, y: 0 }, rotate: 0 }; i[0][0] /= o, i[0][1] /= o; var u = e[0] * e[3] - e[1] * e[2] &lt; 0; u &amp;&amp; (o = -o); var a = i[0][0] * i[1][0] + i[0][1] * i[1][1]; i[1][0] -= i[0][0] * a, i[1][1] -= i[0][1] * a; var l = N(i[1][0] * i[1][0] + i[1][1] * i[1][1]); if (0 === l) return { origin: { x: p(e[4]), y: p(e[5]) }, translate: { x: p(t), y: p(n) }, scale: { x: p(o), y: 0 }, skew: { x: 0, y: 0 }, rotate: 0 }; i[1][0] /= l, i[1][1] /= l, a /= l; var s = 0; return i[1][1] &lt; 0 ? (s = M(i[1][1]) * F, i[0][1] &lt; 0 &amp;&amp; (s = 360 - s)) : s = E(i[0][1]) * F, u &amp;&amp; (s = -s), a = I(a, N(i[0][0] * i[0][0] + i[0][1] * i[0][1])) * F, u &amp;&amp; (a = -a), { origin: { x: p(e[4]), y: p(e[5]) }, translate: { x: p(t), y: p(n) }, scale: { x: p(o), y: p(l) }, skew: { x: p(a), y: 0 }, rotate: p(s) } } }, { key: "clone", value: function () { var t = this.m; return new this.constructor(t[0], t[1], t[2], t[3], t[4], t[5]) } }, { key: "toString", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : " "; if (null === this.s) { var n = this.m.map((function (t) { return p(t) })); 1 === n[0] &amp;&amp; 0 === n[1] &amp;&amp; 0 === n[2] &amp;&amp; 1 === n[3] ? this.s = "translate(" + n[4] + t + n[5] + ")" : this.s = "matrix(" + n.join(t) + ")" } return this.s } }], [{ key: "create", value: function (t) { return t ? Array.isArray(t) ? f(this, v(t)) : t instanceof this ? t.clone() : (new this).recomposeSelf(t.origin, t.rotate, t.skew, t.scale, t.translate) : new this } }]), t }(); function q(t, n, e) { return t &gt;= .5 ? e : n } function B(t, n, e) { return 0 === t || n === e ? n : t * (e - n) + n } function D(t, n, e) { var r = B(t, n, e); return r &lt;= 0 ? 0 : r } function L(t, n, e) { var r = B(t, n, e); return r &lt;= 0 ? 0 : r &gt;= 1 ? 1 : r } function C(t, n, e) { return 0 === t ? n : 1 === t ? e : { x: B(t, n.x, e.x), y: B(t, n.y, e.y) } } function V(t, n, e) { var r = function (t, n, e) { return Math.round(B(t, n, e)) }(t, n, e); return r &lt;= 0 ? 0 : r &gt;= 255 ? 255 : r } function G(t, n, e) { return 0 === t ? n : 1 === t ? e : { r: V(t, n.r, e.r), g: V(t, n.g, e.g), b: V(t, n.b, e.b), a: B(t, null == n.a ? 1 : n.a, null == e.a ? 1 : e.a) } } function z(t, n) { for (var e = [], r = 0; r &lt; t; r++)e.push(n); return e } function Y(t, n) { if (--n &lt;= 0) return t; var e = (t = Object.assign([], t)).length; do { for (var r = 0; r &lt; e; r++)t.push(t[r]) } while (--n &gt; 0); return t } var $, U = function () { function t(n) { r(this, t), this.list = n, this.length = n.length } return o(t, [{ key: "setAttribute", value: function (t, n) { for (var e = this.list, r = 0; r &lt; this.length; r++)e[r].setAttribute(t, n) } }, { key: "removeAttribute", value: function (t) { for (var n = this.list, e = 0; e &lt; this.length; e++)n[e].removeAttribute(t) } }, { key: "style", value: function (t, n) { for (var e = this.list, r = 0; r &lt; this.length; r++)e[r].style[t] = n } }]), t }(), Q = /-./g, H = function (t, n) { return n.toUpperCase() }; function J(t) { return "function" == typeof t ? t : q } function Z(t) { return t ? "function" == typeof t ? t : Array.isArray(t) ? function (t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : w; if (!Array.isArray(t)) return n; switch (t.length) { case 1: return S(t[0]) || n; case 2: return S(t[0], t[1]) || n; case 4: return _(t[0], t[1], t[2], t[3]) || n }return n }(t, null) : function (t, n) { var e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : w; switch (t) { case "linear": return w; case "steps": return S(n.steps || 1, n.jump || 0) || e; case "bezier": case "cubic-bezier": return _(n.x1 || 0, n.y1 || 0, n.x2 || 0, n.y2 || 0) || e }return e }(t.type, t.value, null) : null } function K(t, n, e) { var r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] &amp;&amp; arguments[3], i = n.length - 1; if (t &lt;= n[0].t) return r ? [0, 0, n[0].v] : n[0].v; if (t &gt;= n[i].t) return r ? [i, 1, n[i].v] : n[i].v; var o, u = n[0], a = null; for (o = 1; o &lt;= i; o++) { if (!(t &gt; n[o].t)) { a = n[o]; break } u = n[o] } return null == a ? r ? [i, 1, n[i].v] : n[i].v : u.t === a.t ? r ? [o, 1, a.v] : a.v : (t = (t - u.t) / (a.t - u.t), u.e &amp;&amp; (t = u.e(t)), r ? [o, t, e(t, u.v, a.v)] : e(t, u.v, a.v)) } function W(t, n) { var e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : null; return t &amp;&amp; t.length ? "function" != typeof n ? null : ("function" != typeof e &amp;&amp; (e = null), function (r) { var i = K(r, t, n); return null != i &amp;&amp; e &amp;&amp; (i = e(i)), i }) : null } function X(t, n) { return t.t - n.t } function tt(t, n, r, i, o) { var u, a = "" === r[0], l = "#" === r[0], s = $[r], f = q; switch (a ? (u = r.substr(1), r = u.replace(Q, H)) : l &amp;&amp; (r = r.substr(1)), e(s)) { case "function": if (f = s(i, o, K, Z, r, a, n, t), l) return f; break; case "string": f = W(i, J(s)); break; case "object": if ((f = W(i, J(s.i), s.f)) &amp;&amp; "function" == typeof s.u) return s.u(n, f, r, a, t) }return f ? function (t, n, e) { if (arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] &amp;&amp; arguments[3]) return t instanceof U ? function (r) { return t.style(n, e(r)) } : function (r) { return t.style[n] = e(r) }; if (Array.isArray(n)) { var r = n.length; return function (i) { var o = e(i); if (null == o) for (var u = 0; u &lt; r; u++)t[u].removeAttribute(n); else for (var a = 0; a &lt; r; a++)t[a].setAttribute(n, o) } } return function (r) { var i = e(r); null == i ? t.removeAttribute(n) : t.setAttribute(n, i) } }(n, r, f, a) : null } function nt(t, n, r, i) { if (!i || "object" !== e(i)) return null; var o = null, u = null; return Array.isArray(i) ? u = function (t) { if (!t || !t.length) return null; for (var n = 0; n &lt; t.length; n++)t[n].e &amp;&amp; (t[n].e = Z(t[n].e)); return t.sort(X) }(i) : (u = i.keys, o = i.data || null), u ? tt(t, n, r, u, o) : null } function et(t, n, e) { if (!e) return null; var r = []; for (var i in e) if (e.hasOwnProperty(i)) { var o = nt(t, n, i, e[i]); o &amp;&amp; r.push(o) } return r.length ? r : null } function rt(t, n) { if (!n.settings.duration || n.settings.duration &lt; 0) return null; var e, r, i, o, u, a = function (t, n) { if (!n) return null; var e = []; if (Array.isArray(n)) for (var r = n.length, i = 0; i &lt; r; i++) { var o = n[i]; if (2 === o.length) { var u = null; if ("string" == typeof o[0]) u = t.getElementById(o[0]); else if (Array.isArray(o[0])) { u = []; for (var a = 0; a &lt; o[0].length; a++)if ("string" == typeof o[0][a]) { var l = t.getElementById(o[0][a]); l &amp;&amp; u.push(l) } u = u.length ? 1 === u.length ? u[0] : new U(u) : null } if (u) { var s = et(t, u, o[1]); s &amp;&amp; (e = e.concat(s)) } } } else for (var f in n) if (n.hasOwnProperty(f)) { var c = t.getElementById(f); if (c) { var h = et(t, c, n[f]); h &amp;&amp; (e = e.concat(h)) } } return e.length ? e : null }(t, n.elements); return a ? (e = a, r = n.settings, i = r.duration, o = e.length, u = null, function (t, n) { var a = r.iterations || 1 / 0, l = (r.alternate &amp;&amp; a % 2 == 0) ^ r.direction &gt; 0 ? i : 0, s = t % i, f = 1 + (t - s) / i; n *= r.direction, r.alternate &amp;&amp; f % 2 == 0 &amp;&amp; (n = -n); var c = !1; if (f &gt; a) s = l, c = !0, -1 === r.fill &amp;&amp; (s = r.direction &gt; 0 ? 0 : i); else if (n &lt; 0 &amp;&amp; (s = i - s), s === u) return !1; u = s; for (var h = 0; h &lt; o; h++)e[h](s); return c }) : null } function it(t, n) { for (var e = n.querySelectorAll("svg"), r = 0; r &lt; e.length; r++)if (e[r].id === t.root &amp;&amp; !e[r].svgatorAnimation) return e[r].svgatorAnimation = !0, e[r]; return null } function ot(t) { var n = function (t) { return t.shadowRoot }; return document ? Array.from(t.querySelectorAll(":not(" + ["a", "area", "audio", "br", "canvas", "circle", "datalist", "embed", "g", "head", "hr", "iframe", "img", "input", "link", "object", "path", "polygon", "rect", "script", "source", "style", "svg", "title", "track", "video"].join() + ")")).filter(n).map(n) : [] } function ut(t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : document, e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : 0, r = it(t, n); if (r) return r; if (e &gt;= 20) return null; for (var i = ot(n), o = 0; o &lt; i.length; o++) { var u = ut(t, i[o], e + 1); if (u) return u } return null } function at(t, n) { if ($ = n, !t || !t.root || !Array.isArray(t.animations)) return null; var e = ut(t); if (!e) return null; var r = t.animations.map((function (t) { return rt(e, t) })).filter((function (t) { return !!t })); return r.length ? { svg: e, animations: r, animationSettings: t.animationSettings, options: t.options || void 0 } : null } function lt(t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : null, e = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : Number, r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] ? arguments[3] : "undefined" != typeof BigInt &amp;&amp; BigInt, i = "0x" + (t.replace(/[^0-9a-fA-F]+/g, "") || 27); return n &amp;&amp; r &amp;&amp; e.isSafeInteger &amp;&amp; !e.isSafeInteger(+i) ? e(r(i)) % n + n : +i } function st(t, n, e) { return !t || !e || n &gt; t.length ? t : t.substring(0, n) + st(t.substring(n + 1), e, e) } function ft(t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : 27; return !t || t % n ? t % n : [0, 1].includes(n) ? n : ft(t / n, n) } function ct(t, n, e) { if (t &amp;&amp; t.length) { var r = lt(e), i = ft(r) + 5, o = st(t, ft(r, 5), i); return o = o.replace(/\x7c$/g, "==").replace(/\x2f$/g, "="), o = function (t, n, e) { var r = +("0x" + t.substring(0, 4)); t = t.substring(4); for (var i = lt(n, r) % r + e % 27, o = [], u = 0; u &lt; t.length; u += 2)if ("|" !== t[u]) { var a = +("0x" + t[u] + t[u + 1]) - i; o.push(a) } else { var l = +("0x" + t.substring(u + 1, u + 1 + 4)) - i; u += 3, o.push(l) } return String.fromCharCode.apply(String, o) }(o = (o = atob(o)).replace(/[\x41-\x5A]/g, ""), n, r), o = JSON.parse(o) } } var ht = [{ key: "alternate", def: !1 }, { key: "fill", def: 1 }, { key: "iterations", def: 0 }, { key: "direction", def: 1 }, { key: "speed", def: 1 }, { key: "fps", def: 100 }], vt = function () { function t(n, e) { var i = this, o = arguments.length &gt; 2 &amp;&amp; void 0 !== arguments[2] ? arguments[2] : null; r(this, t), this._id = 0, this._running = !1, this._rollingBack = !1, this._animations = n, this._settings = e, (!o || o &lt; "2022-05-02") &amp;&amp; delete this._settings.speed, ht.forEach((function (t) { i._settings[t.key] = i._settings[t.key] || t.def })), this.duration = e.duration, this.offset = e.offset || 0, this.rollbackStartOffset = 0 } return o(t, [{ key: "alternate", get: function () { return this._settings.alternate } }, { key: "fill", get: function () { return this._settings.fill } }, { key: "iterations", get: function () { return this._settings.iterations } }, { key: "direction", get: function () { return this._settings.direction } }, { key: "speed", get: function () { return this._settings.speed } }, { key: "fps", get: function () { return this._settings.fps } }, { key: "maxFiniteDuration", get: function () { return this.iterations &gt; 0 ? this.iterations * this.duration : this.duration } }, { key: "_apply", value: function (t) { for (var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : {}, e = this._animations, r = e.length, i = 0, o = 0; o &lt; r; o++)n[o] ? i++ : (n[o] = e[o](t, 1), n[o] &amp;&amp; i++); return i } }, { key: "_rollback", value: function (t) { var n = this, e = 1 / 0, r = null; this.rollbackStartOffset = t, this._rollingBack = !0, this._running = !0; this._id = window.requestAnimationFrame((function i(o) { if (n._rollingBack) { null == r &amp;&amp; (r = o); var u = Math.round(t - (o - r) * n.speed); if (u &gt; n.duration &amp;&amp; e !== 1 / 0) { var a = !!n.alternate &amp;&amp; u / n.duration % 2 &gt; 1, l = u % n.duration; u = (l += a ? n.duration : 0) || n.duration } var s = (n.fps ? 1e3 / n.fps : 0) * n.speed, f = Math.max(0, u); f &lt;= e - s &amp;&amp; (n.offset = f, e = f, n._apply(f)); var c = n.iterations &gt; 0 &amp;&amp; -1 === n.fill &amp;&amp; u &gt;= n.maxFiniteDuration; (u &lt;= 0 || n.offset &lt; u || c) &amp;&amp; n.stop(), n._id = window.requestAnimationFrame(i) } })) } }, { key: "_start", value: function () { var t = this, n = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] ? arguments[0] : 0, e = -1 / 0, r = null, i = {}; this._running = !0; var o = function o(u) { null == r &amp;&amp; (r = u); var a = Math.round((u - r) * t.speed + n), l = (t.fps ? 1e3 / t.fps : 0) * t.speed; if (a &gt;= e + l &amp;&amp; !t._rollingBack &amp;&amp; (t.offset = a, e = a, t._apply(a, i) === t._animations.length)) return void t.pause(!0); t._id = window.requestAnimationFrame(o) }; this._id = window.requestAnimationFrame(o) } }, { key: "_pause", value: function () { this._id &amp;&amp; window.cancelAnimationFrame(this._id), this._running = !1 } }, { key: "play", value: function () { if (!this._running) return this._rollingBack ? this._rollback(this.offset) : this._start(this.offset) } }, { key: "stop", value: function () { this._pause(), this.offset = 0, this.rollbackStartOffset = 0, this._rollingBack = !1, this._apply(0) } }, { key: "reachedToEnd", value: function () { return this.iterations &gt; 0 &amp;&amp; this.offset &gt;= this.iterations * this.duration } }, { key: "restart", value: function () { var t = arguments.length &gt; 0 &amp;&amp; void 0 !== arguments[0] &amp;&amp; arguments[0]; this.stop(t), this.play(t) } }, { key: "pause", value: function () { this._pause() } }, { key: "reverse", value: function () { this.direction = -this.direction } }], [{ key: "build", value: function (t, n) { delete t.animationSettings, t.options = ct(t.options, t.root, "5c7f360c"), t.animations.map((function (n) { n.settings = ct(n.s, t.root, "5c7f360c"), delete n.s, t.animationSettings || (t.animationSettings = n.settings) })); var e = t.version; if (!(t = at(t, n))) return null; var r = t.options || {}, i = new this(t.animations, t.animationSettings, e); return { el: t.svg, options: r, player: i } } }, { key: "push", value: function (t) { return this.build(t) } }, { key: "init", value: function () { var t = this, n = window.__SVGATOR_PLAYER__ &amp;&amp; window.__SVGATOR_PLAYER__["5c7f360c"]; Array.isArray(n) &amp;&amp; n.splice(0).forEach((function (n) { return t.build(n) })) } }]), t }(); function yt(t) { return p(t) + "" } function gt(t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : " "; return t &amp;&amp; t.length ? t.map(yt).join(n) : "" } function dt(t) { if (!t) return "transparent"; if (null == t.a || t.a &gt;= 1) { var n = function (t) { return 1 === (t = parseInt(t).toString(16)).length ? "0" + t : t }, e = function (t) { return t.charAt(0) === t.charAt(1) }, r = n(t.r), i = n(t.g), o = n(t.b); return e(r) &amp;&amp; e(i) &amp;&amp; e(o) &amp;&amp; (r = r.charAt(0), i = i.charAt(0), o = o.charAt(0)), "#" + r + i + o } return "rgba(" + t.r + "," + t.g + "," + t.b + "," + t.a + ")" } function pt(t) { return t ? "url(#" + t + ")" : "none" } !function () { for (var t = 0, n = ["ms", "moz", "webkit", "o"], e = 0; e &lt; n.length &amp;&amp; !window.requestAnimationFrame; ++e)window.requestAnimationFrame = window[n[e] + "RequestAnimationFrame"], window.cancelAnimationFrame = window[n[e] + "CancelAnimationFrame"] || window[n[e] + "CancelRequestAnimationFrame"]; window.requestAnimationFrame || (window.requestAnimationFrame = function (n) { var e = Date.now(), r = Math.max(0, 16 - (e - t)), i = window.setTimeout((function () { n(e + r) }), r); return t = e + r, i }, window.cancelAnimationFrame = window.clearTimeout) }(); var mt = { f: null, i: function (t, n, e) { return 0 === t ? n : 1 === t ? e : { x: D(t, n.x, e.x), y: D(t, n.y, e.y) } }, u: function (t, n) { return function (e) { var r = n(e); t.setAttribute("rx", yt(r.x)), t.setAttribute("ry", yt(r.y)) } } }, bt = { f: null, i: function (t, n, e) { return 0 === t ? n : 1 === t ? e : { width: D(t, n.width, e.width), height: D(t, n.height, e.height) } }, u: function (t, n) { return function (e) { var r = n(e); t.setAttribute("width", yt(r.width)), t.setAttribute("height", yt(r.height)) } } }; Object.freeze({ M: 2, L: 2, Z: 0, H: 1, V: 1, C: 6, Q: 4, T: 2, S: 4, A: 7 }); var wt = {}, At = null; function _t(t) { var n = function () { if (At) return At; if ("object" !== ("undefined" == typeof document ? "undefined" : e(document)) || !document.createElementNS) return {}; var t = document.createElementNS("http://www.w3.org/2000/svg", "svg"); return t &amp;&amp; t.style ? (t.style.position = "absolute", t.style.opacity = "0.01", t.style.zIndex = "-9999", t.style.left = "-9999px", t.style.width = "1px", t.style.height = "1px", At = { svg: t }) : {} }().svg; if (!n) return function (t) { return null }; var r = document.createElementNS(n.namespaceURI, "path"); r.setAttributeNS(null, "d", t), r.setAttributeNS(null, "fill", "none"), r.setAttributeNS(null, "stroke", "none"), n.appendChild(r); var i = r.getTotalLength(); return function (t) { var n = r.getPointAtLength(i * t); return { x: n.x, y: n.y } } } function xt(t) { return wt[t] ? wt[t] : wt[t] = _t(t) } function kt(t, n, e, r) { if (!t || !r) return !1; var i = ["M", t.x, t.y]; if (n &amp;&amp; e &amp;&amp; (i.push("C"), i.push(n.x), i.push(n.y), i.push(e.x), i.push(e.y)), n ? !e : e) { var o = n || e; i.push("Q"), i.push(o.x), i.push(o.y) } return n || e || i.push("L"), i.push(r.x), i.push(r.y), i.join(" ") } function St(t, n, e, r) { var i = arguments.length &gt; 4 &amp;&amp; void 0 !== arguments[4] ? arguments[4] : 1, o = kt(t, n, e, r), u = xt(o); try { return u(i) } catch (t) { return null } } function Ot(t, n, e) { return t + (n - t) * e } function jt(t, n, e) { var r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] &amp;&amp; arguments[3], i = { x: Ot(t.x, n.x, e), y: Ot(t.y, n.y, e) }; return r &amp;&amp; (i.a = Mt(t, n)), i } function Mt(t, n) { return Math.atan2(n.y - t.y, n.x - t.x) } function Et(t, n, e, r) { var i = 1 - r; return i * i * t + 2 * i * r * n + r * r * e } function Pt(t, n, e, r) { return 2 * (1 - r) * (n - t) + 2 * r * (e - n) } function It(t, n, e, r) { var i = arguments.length &gt; 4 &amp;&amp; void 0 !== arguments[4] &amp;&amp; arguments[4], o = St(t, n, null, e, r); return o || (o = { x: Et(t.x, n.x, e.x, r), y: Et(t.y, n.y, e.y, r) }), i &amp;&amp; (o.a = Rt(t, n, e, r)), o } function Rt(t, n, e, r) { return Math.atan2(Pt(t.y, n.y, e.y, r), Pt(t.x, n.x, e.x, r)) } function Ft(t, n, e, r, i) { var o = i * i; return i * o * (r - t + 3 * (n - e)) + 3 * o * (t + e - 2 * n) + 3 * i * (n - t) + t } function Nt(t, n, e, r, i) { var o = 1 - i; return 3 * (o * o * (n - t) + 2 * o * i * (e - n) + i * i * (r - e)) } function Tt(t, n, e, r, i) { var o = arguments.length &gt; 5 &amp;&amp; void 0 !== arguments[5] &amp;&amp; arguments[5], u = St(t, n, e, r, i); return u || (u = { x: Ft(t.x, n.x, e.x, r.x, i), y: Ft(t.y, n.y, e.y, r.y, i) }), o &amp;&amp; (u.a = qt(t, n, e, r, i)), u } function qt(t, n, e, r, i) { return Math.atan2(Nt(t.y, n.y, e.y, r.y, i), Nt(t.x, n.x, e.x, r.x, i)) } function Bt(t, n, e) { var r = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] &amp;&amp; arguments[3]; if (Lt(n)) { if (Ct(e)) return It(n, e.start, e, t, r) } else if (Lt(e)) { if (Vt(n)) return It(n, n.end, e, t, r) } else { if (Vt(n)) return Ct(e) ? Tt(n, n.end, e.start, e, t, r) : It(n, n.end, e, t, r); if (Ct(e)) return It(n, e.start, e, t, r) } return jt(n, e, t, r) } function Dt(t, n, e) { var r = Bt(t, n, e, !0); return r.a = function (t) { return arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] &amp;&amp; arguments[1] ? t + Math.PI : t }(r.a) / b, r } function Lt(t) { return !t.type || "corner" === t.type } function Ct(t) { return null != t.start &amp;&amp; !Lt(t) } function Vt(t) { return null != t.end &amp;&amp; !Lt(t) } var Gt = new T; var zt = { f: yt, i: B }, Yt = { f: yt, i: L }; function $t(t, n, e) { return t.map((function (t) { return function (t, n, e) { var r = t.v; if (!r || "g" !== r.t || r.s || !r.v || !r.r) return t; var i = e.getElementById(r.r), o = i &amp;&amp; i.querySelectorAll("stop") || []; return r.s = r.v.map((function (t, n) { var e = o[n] &amp;&amp; o[n].getAttribute("offset"); return { c: t, o: e = p(parseInt(e) / 100) } })), delete r.v, t }(t, 0, e) })) } var Ut = { gt: "gradientTransform", c: { x: "cx", y: "cy" }, rd: "r", f: { x: "x1", y: "y1" }, to: { x: "x2", y: "y2" } }; function Qt(t, n, r, i, o, u, a, l) { return $t(t, 0, l), n = function (t, n, e) { for (var r, i, o, u = t.length - 1, a = {}, l = 0; l &lt;= u; l++)(r = t[l]).e &amp;&amp; (r.e = n(r.e)), r.v &amp;&amp; "g" === (i = r.v).t &amp;&amp; i.r &amp;&amp; (o = e.getElementById(i.r)) &amp;&amp; (a[i.r] = { e: o, s: o.querySelectorAll("stop") }); return a }(t, i, l), function (i) { var o = r(i, t, Ht); if (!o) return "none"; if ("c" === o.t) return dt(o.v); if ("g" === o.t) { if (!n[o.r]) return pt(o.r); var u = n[o.r]; return function (t, n) { for (var e = t.s, r = e.length; r &lt; n.length; r++) { var i = e[e.length - 1].cloneNode(); i.id = Kt(i.id), t.e.appendChild(i), e = t.s = t.e.querySelectorAll("stop") } for (var o = 0, u = e.length, a = n.length - 1; o &lt; u; o++)e[o].setAttribute("stop-color", dt(n[Math.min(o, a)].c)), e[o].setAttribute("offset", n[Math.min(o, a)].o) }(u, o.s), Object.keys(Ut).forEach((function (t) { if (void 0 !== o[t]) if ("object" !== e(Ut[t])) { var n, r = "gt" === t ? (n = o[t], Array.isArray(n) ? "matrix(" + n.join(" ") + ")" : "") : o[t], i = Ut[t]; u.e.setAttribute(i, r) } else Object.keys(Ut[t]).forEach((function (n) { if (void 0 !== o[t][n]) { var e = o[t][n], r = Ut[t][n]; u.e.setAttribute(r, e) } })) })), pt(o.r) } return "none" } } function Ht(t, e, r) { if (0 === t) return e; if (1 === t) return r; if (e &amp;&amp; r) { var i = e.t; if (i === r.t) switch (e.t) { case "c": return { t: i, v: G(t, e.v, r.v) }; case "g": if (e.r === r.r) { var o = { t: i, s: Jt(t, e.s, r.s), r: e.r }; return e.gt &amp;&amp; r.gt &amp;&amp; (o.gt = function (t, n, e) { var r = n.length; if (r !== e.length) return q(t, n, e); for (var i = new Array(r), o = 0; o &lt; r; o++)i[o] = B(t, n[o], e[o]); return i }(t, e.gt, r.gt)), e.c ? (o.c = C(t, e.c, r.c), o.rd = D(t, e.rd, r.rd)) : e.f &amp;&amp; (o.f = C(t, e.f, r.f), o.to = C(t, e.to, r.to)), o } }if ("c" === e.t &amp;&amp; "g" === r.t || "c" === r.t &amp;&amp; "g" === e.t) { var u = "c" === e.t ? e : r, a = "g" === e.t ? n({}, e) : n({}, r), l = a.s.map((function (t) { return { c: u.v, o: t.o } })); return a.s = "c" === e.t ? Jt(t, l, a.s) : Jt(t, a.s, l), a } } return q(t, e, r) } function Jt(t, n, e) { if (n.length === e.length) return n.map((function (n, r) { return Zt(t, n, e[r]) })); for (var r = Math.max(n.length, e.length), i = [], o = 0; o &lt; r; o++) { var u = Zt(t, n[Math.min(o, n.length - 1)], e[Math.min(o, e.length - 1)]); i.push(u) } return i } function Zt(t, n, e) { return { o: L(t, n.o, e.o || 0), c: G(t, n.c, e.c || {}) } } function Kt(t) { return t.replace(/-fill-([0-9]+)$/, (function (t, n) { return "-fill-" + (+n + 1) })) } var Wt = { fill: Qt, "fill-opacity": Yt, stroke: Qt, "stroke-opacity": Yt, "stroke-width": zt, "stroke-dashoffset": { f: yt, i: B }, "stroke-dasharray": { f: function (t) { var n = arguments.length &gt; 1 &amp;&amp; void 0 !== arguments[1] ? arguments[1] : " "; return t &amp;&amp; t.length &gt; 0 &amp;&amp; (t = t.map((function (t) { return p(t, 4) }))), gt(t, n) }, i: function (t, n, e) { var r, i, o, u = n.length, a = e.length; if (u !== a) if (0 === u) n = z(u = a, 0); else if (0 === a) a = u, e = z(u, 0); else { var l = (o = (r = u) * (i = a) / function (t, n) { for (var e; n;)e = n, n = t % n, t = e; return t || 1 }(r, i)) &lt; 0 ? -o : o; n = Y(n, Math.floor(l / u)), e = Y(e, Math.floor(l / a)), u = a = l } for (var s = [], f = 0; f &lt; u; f++)s.push(p(D(t, n[f], e[f]))); return s } }, opacity: Yt, transform: function (t, n, r, i) { if (!(t = function (t, n) { if (!t || "object" !== e(t)) return null; var r = !1; for (var i in t) t.hasOwnProperty(i) &amp;&amp; (t[i] &amp;&amp; t[i].length ? (t[i].forEach((function (t) { t.e &amp;&amp; (t.e = n(t.e)) })), r = !0) : delete t[i]); return r ? t : null }(t, i))) return null; var o = function (e, i, o) { var u = arguments.length &gt; 3 &amp;&amp; void 0 !== arguments[3] ? arguments[3] : null; return t[e] ? r(i, t[e], o) : n &amp;&amp; n[e] ? n[e] : u }; return n &amp;&amp; n.a &amp;&amp; t.o ? function (n) { var e = r(n, t.o, Dt); return Gt.recomposeSelf(e, o("r", n, B, 0) + e.a, o("k", n, C), o("s", n, C), o("t", n, C)).toString() } : function (t) { return Gt.recomposeSelf(o("o", t, Bt, null), o("r", t, B, 0), o("k", t, C), o("s", t, C), o("t", t, C)).toString() } }, r: zt, "#size": bt, "#radius": mt, _: function (t, n) { if (Array.isArray(t)) for (var e = 0; e &lt; t.length; e++)this[t[e]] = n; else this[t] = n } }, Xt = function (t) { !function (t, n) { if ("function" != typeof n &amp;&amp; null !== n) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(n &amp;&amp; n.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), n &amp;&amp; l(t, n) }(u, t); var n, e, i = (n = u, e = s(), function () { var t, r = a(n); if (e) { var i = a(this).constructor; t = Reflect.construct(r, arguments, i) } else t = r.apply(this, arguments); return c(this, t) }); function u() { return r(this, u), i.apply(this, arguments) } return o(u, null, [{ key: "build", value: function (t) { var n = h(a(u), "build", this).call(this, t, Wt); if (!n) return null; n.el, n.options, function (t, n, e) { t.play() }(n.player) } }]), u }(vt); return Xt.init(), Xt }));
+                    (function (s, i, o, w, d, a, b) { w[o] = w[o] || {}; w[o][s] = w[o][s] || []; w[o][s].push(i); })('5c7f360c', { "root": "eUklZ4dNQcr1", "version": "2022-05-04", "animations": [{ "elements": { "eUklZ4dNQcr2": { "transform": { "data": { "o": { "x": 80, "y": 80, "type": "corner" }, "t": { "x": -80, "y": -80 } }, "keys": { "r": [{ "t": 0, "v": 0 }, { "t": 400, "v": 19 }, { "t": 800, "v": 0 }] } } }, "eUklZ4dNQcr12": { "opacity": [{ "t": 0, "v": 0 }, { "t": 400, "v": 0.95 }] }, "eUklZ4dNQcr13": { "opacity": [{ "t": 500, "v": 0 }, { "t": 900, "v": 1 }] } }, "s": "MXDA1ZGM1WDZjYWViZmQJjYWJHYmViM2I5YjgN2Yzg0N2I3YTdhN2FFONzY2Y2FlYjNiY0lhZFmFkYmViM2I5Yjg2YzXg0N2I3NjZjYjNiZWFUmTWJjYWJiZWIzYjliAOGJkNmM4NDdhNzY2YR2IwYjNiNmI2NmM4NDDdiNzY2Y2FiVGI2YmVQhZmJjYjhhYmJlYWZJRNmM4NGIwU2FiYjZiZWEZhZjc2NmNiZGJhYWVZhZmFlUjZjTjg0VTdPiNzY2Y2IwYmFiZDZjNODQ3YjdhN2FjNw|" }], "options": "MMDAxMDg4MmY4MEk4MTPZlN2Y4MTJmNDcyZjcW5N2M2ZTcxMmY4YQ|" }, '__SVGATOR_PLAYER__', window, document)
+                    </script>
+        </svg>
+    </div> -->
+    <header id="header-layout">
+      <nav
+        id="sticky-navbar"
+        class="fs-container navbar navbar-expand-lg navbar-toggleable-lg navbar-light border-bottom box-shadow fs-container"
+      >
+        <div class="nav-box">
+          <div class="nav-box-brand-burger">
+            <a class="navbar-brand" href="/">
+              <img class="nav-logo" src="images/logo2.png" alt="Logo" />
+            </a>
+            <button
+              onclick="myFunction()"
+              class="fs-button fs-navbar-toggler navbar-toggler-right"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+
+          <div id="fs-sidemenu" class="fs-sidemenu">
+            <div class="fs-sidemenu-logo-box">
+              <img src="images/sidemenu-logo.png" class="fs-sidemenu-logo" />
+              <div
+                id="fs-sidemenu-close"
+                class="fs-button fs-sidemenu-close"
+                onclick="myFunction()"
+              ></div>
+            </div>
+            <ul class="navbar-nav nav-box-1">
+              <li class="nav-item">
+                <a href="./index.html" class="nav-link btn-nav active"
+                  >TRANG CHỦ</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="./tin-tuc.html" class="nav-link btn-nav">TIN TỨC</a>
+              </li>
+              <li class="nav-item">
+                <a href="./cam-nang.html" class="nav-link btn-nav">CẨM NANG</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav nav-box-2">
+              <li class="nav-item">
+                <a
+                  href="https://www.mangogames.vn/payment"
+                  target="_blank"
+                  class="nav-link btn-nav"
+                  asp-area=""
+                  asp-controller="Home"
+                  asp-action="Index"
+                  >NẠP THẺ</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.mangogames.vn/report"
+                  target="_blank"
+                  class="nav-link btn-nav"
+                  asp-area=""
+                  asp-controller="Home"
+                  asp-action="Index"
+                  >BÁO LỖI</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.mangogames.vn/account"
+                  target="_blank"
+                  class="nav-link btn-nav"
+                  asp-area=""
+                  asp-controller="Home"
+                  asp-action="Index"
+                  >TÀI KHOẢN</a
+                >
+              </li>
+            </ul>
+            <div
+              id="btn-download-game"
+              class="btn-download-game btn-download-game-mobile"
+            ></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main id="main-layout" role="main">
+      <style>
+        main {
+          background: url("images/PatternBell.png") no-repeat, #f5fdff;
+        }
+
+        .carousel-item {
+          transition: transform 0.4s ease-in-out;
+        }
+
+        div::-webkit-scrollbar {
+          width: 0 !important;
+        }
+
+        @keyframes slider {
+          0% {
+            margin-left: 0;
+          }
+
+          20% {
+            margin-left: 0;
+          }
+
+          25% {
+            margin-left: -100%;
+          }
+
+          45% {
+            margin-left: -100%;
+          }
+
+          50% {
+            margin-left: -200%;
+          }
+
+          70% {
+            margin-left: -200%;
+          }
+
+          75% {
+            margin-left: -300%;
+          }
+
+          95% {
+            margin-left: -300%;
+          }
+
+          100% {
+            margin-left: -400%;
+          }
+        }
+
+        .hero-banner {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          flex: 1 0 0;
+        }
+
+        .slogan {
+          width: 88rem;
+          height: 39.9rem;
+          position: absolute;
+          left: 50%;
+          margin-top: 9.9rem;
+          transform: translate(-50%, 0%);
+        }
+
+        .introduction {
+          display: flex;
+          width: 100%;
+          max-width: 1920px;
+          height: 836px;
+          justify-content: center;
+          align-items: center;
+          gap: 32px;
+          flex-shrink: 0;
+          /*        background: url("../../images/introduction-bell-pattern.png") no-repeat, #F5FDFF;
+    */
+          margin-left: auto;
+          margin-right: auto;
+          background-size: cover;
+        }
+
+        .introduction-box {
+          margin: 100px 128px;
+          display: flex;
+          height: 597px;
+          align-items: center;
+          gap: 48px;
+          flex: 1 0 0;
+        }
+
+        .introduction-box-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+          align-self: stretch;
+          width: 494px;
+        }
+
+        .introduction-text-cap {
+          align-self: stretch;
+          color: var(--blue-700, #000);
+          /* H1: Regular */
+          font-family: SVN-Impress;
+          font-size: 39px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 0%; /* 0px */
+        }
+
+        .introduction-text-small {
+          align-self: stretch;
+          color: #757b89;
+          text-align: justify;
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .introduction-ex-small-box {
+          display: flex;
+          padding: 0px 12px;
+          align-items: flex-start;
+          gap: 10px;
+          border-radius: 12px;
+          background: var(--blue-100, #c0effd);
+        }
+
+        .introduction-ex-small-text {
+          color: var(--blue-500, #2685dd);
+          text-align: justify;
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .introduction-text-cap > h1 {
+          font-size: 31px !important;
+        }
+
+        .introduction-box-left-parent {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 48px;
+          align-self: stretch;
+        }
+
+        .btn-character-game {
+          width: 229px;
+          height: 70px;
+          margin-right: auto;
+          background: url("images/button-character-game.png") no-repeat;
+          transition: 0.5s all;
+        }
+
+        .btn-character-game:hover {
+          cursor: pointer;
+          background: url("images/button-character-hover.png") no-repeat;
+        }
+
+        .btn-character-game:active {
+          transform: translateY(3px);
+          /*background: url("../../images/button-character-game-active.png") no-repeat;*/
+        }
+
+        iframe {
+          width: 100%;
+          height: 100%;
+        }
+
+        .introduction-box-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          flex: 1 0 0;
+          align-self: stretch;
+          border-radius: 16px;
+          background: rgba(0, 0, 0, 0.6)
+            url("images/home-introduction-right-background-1920.png");
+          border-radius: 12px;
+          height: 597px;
+        }
+
+        .introduction-watch-button {
+          display: flex;
+          padding: 8px 24px 8px 8px;
+          align-items: center;
+          gap: 8px;
+          position: absolute;
+          border-radius: 16px;
+          background: #fff;
+          transition: 0.3s all;
+          margin-top: 503px;
+          margin-left: 15px;
+        }
+
+        .introduction-watch-button:hover {
+          cursor: pointer;
+        }
+
+        .introduction-watch-button:active {
+          cursor: pointer;
+          background: rgba(0, 0, 0, 0.6);
+          transform: translateY(3px);
+        }
+
+        .introduction-watch-button-image {
+          width: 64px;
+          height: 64px;
+          background: url("images/videocircle.svg");
+        }
+
+        .introduction-watch-button-text {
+          color: var(--neutral-900, #111);
+          /* H5: Regular */
+          font-family: SVN-Impress;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .download-game {
+          display: flex;
+          max-width: 1920px;
+          width: 100%;
+          height: 899px;
+          padding: 0px 128px 120px 128px;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 32px;
+          flex-shrink: 0;
+          background: url("images/download-game-chaien.png");
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .download-game-title {
+          display: flex;
+          width: 494px;
+          height: 622px;
+          flex-direction: column;
+          justify-content: center;
+          flex-shrink: 0;
+          color: var(--blue-700, #000);
+          text-align: center;
+          font-family: SVN-Impress;
+          font-size: 64px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 130.7%; /* 83.648px */
+          margin-top: -76px;
+          margin-right: 200px;
+        }
+
+        .download-game-box {
+          display: flex;
+          width: 262px;
+          height: 312px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          position: absolute;
+          margin-top: 537px;
+          margin-right: 678px;
+        }
+
+        .fs-button {
+          font-family: SVN-Impress;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .fs-button:hover {
+          cursor: pointer;
+        }
+
+        .fs-button:active {
+          transform: translateY(3px);
+        }
+
+        .button-download-game-pc {
+          flex: 1 0 0;
+          align-self: stretch;
+          background: url(images/home-download-game-pc.png) no-repeat;
+        }
+
+        .button-download-game-pc:hover {
+          background: url("images/PC-hover.png") no-repeat;
+          transition: background 0.3s linear;
+        }
+
+        .button-download-game-android:hover {
+          background: url("images/android-hover.png") no-repeat;
+          transition: background 0.3s linear;
+        }
+
+        .button-download-game-ios:hover {
+          background: url("images/IOS-hover.png") no-repeat;
+          transition: background 0.3s linear;
+        }
+
+        .button-download-game-ios {
+          flex: 1 0 0;
+          align-self: stretch;
+          background: url(images/home-download-game-ios.png) no-repeat;
+        }
+
+        .button-download-game-android {
+          flex: 1 0 0;
+          align-self: stretch;
+          background: url(images/home-download-game-android.png) no-repeat;
+        }
+
+        .character {
+          display: flex;
+          max-width: 1920px;
+          width: 100%;
+          padding: 120px 60px;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 32px;
+          align-self: stretch;
+          /*        background: url("../../images/introduction-bell-pattern.png") repeat, #F5FDFF;
+    */
+          margin-left: auto;
+          margin-right: auto;
+          background-size: cover;
+        }
+
+        .character-box-detail-character-skill {
+          display: none;
+        }
+
+        .character-box {
+          display: flex;
+          width: 1325px;
+          flex-direction: column;
+          align-items: center;
+          gap: 80px;
+        }
+
+        .character-box-title {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .character-box-title-sub {
+          display: flex;
+          padding: 0px 12px;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 10px;
+          border-radius: 12px;
+          background: var(--blue-100, #c0effd);
+        }
+
+        .character-box-title-sub-text {
+          color: var(--blue-500, #2685dd);
+          text-align: justify;
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .character-box-title-text {
+          display: flex;
+          width: 1184px;
+          flex-direction: column;
+          align-items: center;
+          gap: 48px;
+        }
+
+        .character-box-title-text > h1 {
+          align-self: stretch;
+          color: var(--blue-900, #000);
+          text-align: center;
+          /* H1: Regular */
+          font-family: SVN-Impress;
+          font-size: 39px;
+          font-style: normal;
+          font-weight: 400;
+        }
+
+        .character-box-character {
+          display: flex;
+          width: 1329px;
+          height: 792px;
+          justify-content: center;
+          align-items: center;
+          gap: 300px;
+        }
+
+        .character-box-list-character {
+          width: 88px;
+          height: 448px;
+          flex-shrink: 0;
+          display: flex;
+          gap: 32px;
+          flex-direction: column;
+        }
+
+        .list-character-select {
+          width: 88px;
+          height: 88px;
+          flex-shrink: 0;
+        }
+
+        .list-character-select-nobita {
+          background: url("images/select-nobita.png");
+        }
+
+        .list-character-select-xuka {
+          background: url("images/select-xuka.svg");
+        }
+
+        .list-character-select-xeko {
+          background: url("images/select-xeko.svg");
+        }
+
+        .list-character-select-chaien {
+          background: url("images/select-chaien.svg");
+        }
+
+        .list-character-select-nobita.active {
+          background: url("images/select-nobita-active.png");
+          background-size: cover;
+        }
+
+        .list-character-select-xuka.active {
+          background: url("images/select-xuka-active.png");
+          background-size: cover;
+        }
+
+        .list-character-select-chaien.active {
+          background: url("images/select-chaien-active.png");
+          background-size: cover;
+        }
+
+        .list-character-select-xeko.active {
+          background: url("images/select-xeko-active.png");
+          background-size: cover;
+        }
+
+        #character-nobita {
+          content: url("images/character-nobita.png");
+        }
+
+        #character-xuka {
+          content: url("images/character-xuka-detail.png");
+        }
+
+        #character-xeko {
+          content: url("images/character-xeko-detail.png");
+        }
+
+        #character-chaien {
+          content: url("images/character-chaien-detail.png");
+        }
+
+        .character-box-detail-character {
+          position: relative;
+          display: flex;
+          width: 941px;
+          height: 792px;
+          justify-content: center;
+          align-items: center;
+          gap: 120px;
+          flex-shrink: 0;
+        }
+
+        .character-box-detail-bg {
+          width: 100%;
+          max-width: 594px;
+          max-height: 594px;
+          min-height: 594px;
+          position: absolute;
+          background: url("images/CharacterBG.png");
+        }
+
+        .character-box-detail-xoay {
+          width: 100%;
+          max-width: 725px;
+          max-height: 724px;
+          min-height: 724px;
+          position: absolute;
+          background: url("images/CharacterXoay.png");
+          -webkit-animation-name: spin;
+          -webkit-animation-duration: 10000ms;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-timing-function: linear;
+          -moz-animation-name: spin;
+          -moz-animation-duration: 10000ms;
+          -moz-animation-iteration-count: infinite;
+          -moz-animation-timing-function: linear;
+          -ms-animation-name: spin;
+          -ms-animation-duration: 10000ms;
+          -ms-animation-iteration-count: infinite;
+          -ms-animation-timing-function: linear;
+          animation-name: spin;
+          animation-duration: 10000ms;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+        }
+
+        .popup {
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 20px;
+          background-color: #fff;
+          border: 3px solid var(--blue-100, #c0effd);
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+        }
+
+        /* Style for the overlay */
+        .overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+        }
+
+        @-ms-keyframes spin {
+          from {
+            -ms-transform: rotate(0deg);
+          }
+
+          to {
+            -ms-transform: rotate(360deg);
+          }
+        }
+
+        @-moz-keyframes spin {
+          from {
+            -moz-transform: rotate(0deg);
+          }
+
+          to {
+            -moz-transform: rotate(360deg);
+          }
+        }
+
+        @-webkit-keyframes spin {
+          from {
+            -webkit-transform: rotate(0deg);
+          }
+
+          to {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .hero-banner-image {
+          width: 100%;
+          max-width: 1920px;
+          content: url("images/HomeHeroBanner1920.png");
+          height: 1237px;
+          background-size: cover;
+          object-fit: cover;
+        }
+
+        .slogan {
+          content: url("images/HomeSlogan1920.png");
+          width: 900px;
+          height: 422.549px;
+          margin-top: 15rem;
+        }
+
+        .btn-download-game-pc {
+          top: 630px;
+          left: 52%;
+          display: unset;
+        }
+
+        .character-box-detail-character-1 {
+          width: 100%;
+          max-width: 941px;
+          max-height: 792px;
+          min-height: 792px;
+          position: absolute;
+          /*background: url('images/character-nobita.png') no-repeat;*/
+        }
+
+        .character-box-detail-character-1.nobita {
+          width: 100%;
+          max-width: 941px;
+          max-height: 792px;
+          min-height: 792px;
+          position: absolute;
+          /*background: url('images/character-nobita.png') no-repeat;*/
+        }
+
+        .character-box-detail-character-1.xuka {
+          width: 100%;
+          max-width: 941px;
+          max-height: 792px;
+          min-height: 792px;
+          position: absolute;
+          /*background: url('images/character-xuka-detail.png') no-repeat;*/
+        }
+
+        .character-box-detail-character-1.xeko {
+          width: 100%;
+          max-width: 941px;
+          max-height: 792px;
+          min-height: 792px;
+          position: absolute;
+          /*background: url('images/character-xeko-detail.png') no-repeat;*/
+        }
+
+        .character-box-detail-character-1.chaien {
+          width: 100%;
+          max-width: 941px;
+          max-height: 792px;
+          min-height: 792px;
+          position: absolute;
+          /*background: url('images/character-chaien-detail.png') no-repeat;*/
+        }
+
+        .call-to-action {
+          display: flex;
+          height: 1029px;
+          max-width: 1920px;
+          width: 100%;
+          padding: 120px 60px;
+          flex-direction: column;
+          align-items: center;
+          gap: 48px;
+          flex-shrink: 0;
+          align-self: stretch;
+          /*        background: url("../../images/introduction-bell-pattern.png") repeat, #F5FDFF;
+    */
+          margin-left: auto;
+          margin-right: auto;
+          background-size: cover;
+        }
+
+        .call-to-action-background {
+          width: 100%;
+          max-width: 1920px;
+          max-height: 1260px;
+          position: absolute;
+          content: url("images/call-to-action-background-1920.png");
+          margin-top: -328px;
+        }
+
+        .call-to-action-box {
+          display: flex;
+          align-items: center;
+          gap: 335px;
+          z-index: 5;
+        }
+
+        .call-to-action-box-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .call-to-action-box-sub {
+          display: flex;
+          padding: 0px 12px;
+          justify-content: center;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          border-radius: 12px;
+          background: var(--blue-100, #c0effd);
+        }
+
+        .call-to-action-box-sub-text {
+          color: var(--blue-500, #2685dd);
+          text-align: justify;
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .call-to-action-box-text-1 {
+          color: var(--blue-900, #000);
+          text-align: center;
+          /* H1: Regular */
+          font-family: SVN-Impress;
+          font-size: 39px;
+          font-style: normal;
+          font-weight: 400;
+        }
+
+        .call-to-action-box-text-2 {
+          color: var(--blue-900, #000);
+          font-family: SVN-Impress;
+          font-size: 72px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 130.7%; /* 94.104px */
+        }
+
+        .call-to-action-box-text-3 {
+          width: 619px;
+          color: var(--blue-900, #000);
+          /* H5: Regular */
+          font-family: SVN-Impress;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .button-call-to-action-start {
+          width: 229px;
+          height: 70px;
+          background: url(images/button-start.png) no-repeat;
+          z-index: 1; /* Lower z-index value */
+        }
+
+        .button-call-to-action-start:hover {
+          background: url(images/button-start-hover.png) no-repeat;
+          background-size: cover;
+          transition: background 0.3s linear;
+        }
+
+        .top-news {
+          display: flex;
+          max-width: 1920px;
+          width: 100%;
+          height: 926px;
+          padding: 120px 128px;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 32px;
+          flex-shrink: 0;
+          /*        background: url("../../images/introduction-bell-pattern.png") repeat, #F5FDFF;
+    */
+          margin-left: auto;
+          margin-right: auto;
+          background-size: cover;
+        }
+
+        .top-news-content-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 60px;
+          flex: 1 0 0;
+        }
+
+        .top-news-content-box-title {
+          display: flex;
+          width: 494px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .top-news-content-box-sub {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 48px;
+          align-self: stretch;
+        }
+
+        .top-news-content-detail {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 48px;
+          align-self: stretch;
+        }
+
+        .top-news-content-detail-image {
+          display: flex;
+          width: 779px;
+          height: 546px;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .list-news {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+          flex: 1 0 0;
+          align-self: stretch;
+        }
+
+        .fs-toggle-button {
+          display: flex;
+          padding: 12px 32px;
+          align-items: flex-start;
+          gap: 10px;
+          border-radius: 1000px;
+          font-family: SVN-Impress;
+          text-decoration: none;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          color: #1574cd;
+          transition: 0.3s all;
+        }
+
+        .fs-toggle-button.active {
+          color: #fff;
+          background-color: #4097e9;
+        }
+
+        .fs-news-tab {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+        }
+
+        .news-box {
+          display: flex;
+          padding-bottom: 12px;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+          align-self: stretch;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+          transition: 0.3s all;
+          margin-bottom: 24px;
+        }
+
+        .news-box:hover span {
+          cursor: pointer;
+          color: #4097e9;
+          transition: color 0.7s;
+        }
+
+        .news-box:hover {
+          border-bottom: 1px solid #4097e9;
+          transition: border-bottom-color 0.7s;
+        }
+
+        .news-title {
+          color: var(--blue-100, #000);
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          flex: 1 0 0;
+        }
+
+        .news-date {
+          color: var(--blue-100, #000);
+          text-align: center;
+          /* Body text: Regular */
+          font-family: SVN-Impress;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .event-sub-text {
+          border-radius: 12px;
+          background: var(--blue-100, #c0effd);
+          padding: 0px 12px;
+        }
+
+        .introduction-box-right-overlay {
+          display: none;
+        }
+
+        @media only screen and (max-width: 1720px) {
+          .download-game-title {
+            margin-right: -16px;
+          }
+
+          .introduction-box {
+            height: 800px;
+          }
+
+          .call-to-action {
+            height: 759px;
+          }
+
+          .call-to-action-background {
+            margin-top: -300px;
+          }
+        }
+
+        @media only screen and (max-width: 1630px) {
+          .call-to-action-background {
+            margin-top: -200px;
+          }
+        }
+
+        @media only screen and (max-width: 1520px) {
+          .download-game-title {
+            margin-top: -66px;
+            margin-right: -203px;
+          }
+
+          .call-to-action-background {
+            margin-top: -200px;
+          }
+        }
+        /*Tablet*/
+        @media only screen and (max-width: 1440px) {
+          .slogan {
+            margin-top: 20px;
+            width: 810px;
+            height: auto;
+          }
+
+          .top-news-content-detail-image {
+            width: 679px;
+            height: auto;
+          }
+
+          .btn-download-game-pc {
+            display: flex;
+            top: 825px;
+          }
+
+          .hero-banner-image {
+            width: 100%;
+            max-width: 1440px;
+            height: 95.5rem;
+            flex-shrink: 0;
+            content: url("images/HomeHeroBanner.png");
+          }
+
+          .btn-download-game {
+            top: 530px;
+          }
+
+          .introduction {
+            width: 100%;
+            height: fit-content;
+            padding: 30px 0;
+          }
+
+          .introduction-box {
+            flex-direction: column;
+          }
+
+          .introduction-box-left-parent {
+            flex-direction: row;
+          }
+
+          .btn-character-game {
+            margin-left: auto;
+            margin-right: 0;
+          }
+
+          .introduction-box-right-overlay {
+            display: none;
+          }
+
+          .introduction-box-right {
+            background: url(images/home-introduction-right-background-tablet-overlay.png)
+              no-repeat;
+            width: 100%;
+            background-size: cover;
+            height: 453px;
+            flex: unset;
+          }
+
+          .introduction-watch-button {
+            margin-top: 327px;
+          }
+
+          iframe {
+            width: 100%;
+            height: 100%;
+          }
+
+          .download-game {
+            width: 100%;
+            background: url("images/download-game-chaien-overlay-tablet.png")
+              no-repeat;
+            height: 653px;
+            background-size: cover;
+          }
+
+          .download-game-title {
+            visibility: hidden;
+          }
+
+          .download-game-box {
+            margin-top: 307px;
+            margin-right: 661px;
+          }
+
+          .character {
+            width: 100%;
+          }
+
+          .character-box {
+            width: 100%;
+          }
+
+          .character-box-character {
+            flex-direction: column;
+            gap: 120px;
+          }
+
+          .character-box-title,
+          .character-box-title-text {
+            width: 100%;
+          }
+
+          .character-box-character {
+            width: 100%;
+          }
+
+          .character-box-list-character {
+            flex-direction: row;
+            width: 0;
+            height: 0;
+            margin-left: -450px;
+          }
+
+          .call-to-action {
+            width: 100%;
+          }
+
+          .call-to-action-box-text-1 {
+            font-size: 31px;
+          }
+
+          .call-to-action-box-text-2 {
+            font-size: 48px;
+          }
+
+          .call-to-action-box {
+            gap: 120px;
+          }
+
+          .call-to-action-background {
+            width: 100%;
+          }
+
+          .top-news {
+            width: 100%;
+          }
+        }
+
+        @media only screen and (max-width: 1200px) {
+          .top-news-content-detail-image {
+            margin-top: 70px;
+            width: 435px;
+            height: auto;
+          }
+
+          .character-box-detail-character-1 {
+            /*background: url('../../images/character-nobita-tablet.png') no-repeat;*/
+          }
+
+          .call-to-action-background {
+            margin-top: -50px;
+          }
+        }
+        /*EndTablet*/
+        /*Mobile*/
+        @media only screen and (max-width: 991px) {
+          main {
+            background-color: #f5fdff;
+            background: url("images/Bell%20Pattern%20Tablet.png") no-repeat,
+              #f5fdff;
+          }
+
+          .slogan {
+            margin-top: 30px;
+            min-width: 460px;
+            min-height: 167px;
+            max-width: 600px;
+            height: unset;
+            max-height: 275px;
+          }
+
+          .hero-banner-image {
+            min-height: 790px;
+            background: url(images/HomeHeroBannerTablet.png);
+            max-height: 887px;
+          }
+
+          .btn-download-game {
+            top: 450px;
+          }
+
+          .introduction-box-right {
+            background: url(images/home-introduction-right-background-tablet-overlay.png)
+              no-repeat;
+            width: 100%;
+            background-size: cover;
+            height: 453px;
+            flex: unset;
+          }
+
+          .button-download-game-pc {
+            display: none;
+          }
+
+          .button-download-game-ios {
+            flex: 1 0 0;
+            align-self: stretch;
+            background: url(images/home-download-game-ios.png) no-repeat;
+            background-size: 196px 65px;
+            margin-top: -50px;
+            margin-left: 50px;
+          }
+
+          .button-download-game-ios:hover {
+            align-self: stretch;
+            background-size: 196px 65px;
+          }
+
+          .button-download-game-android {
+            flex: 1 0 0;
+            align-self: stretch;
+            background: url(images/home-download-game-android.png) no-repeat;
+            background-size: 196px 65px;
+            margin-top: -210px;
+            margin-left: 50px;
+          }
+
+          .button-download-game-android:hover {
+            align-self: stretch;
+            background-size: 196px 65px;
+          }
+
+          .introduction-ex-small-text,
+          .introduction-text-small {
+            font-size: 16px;
+          }
+
+          .introduction-text-cap > h1 {
+            font-size: 33px;
+          }
+
+          .introduction-watch-button {
+            margin-top: 357px;
+          }
+
+          .character-box-title-text > h1 {
+            margin-bottom: 60px;
+          }
+
+          .download-game {
+            background-size: cover;
+            width: 100%;
+            height: 442px;
+          }
+
+          .download-game-title {
+            visibility: hidden;
+            width: 100%;
+            height: auto;
+          }
+
+          .fs-news-tab {
+            margin-left: 10px;
+            margin-right: 10px;
+          }
+          /*.download-game-box {
+                    margin-top: 51%;
+                    margin-right: -31%;
+                }*/
+          .character-box {
+            gap: 0px;
+          }
+
+          .character-box-character {
+            height: unset;
+            gap: unset;
+          }
+
+          .character-box-list-character {
+            flex-direction: row;
+            width: 0;
+            height: fit-content;
+          }
+
+          .character-box-detail-character {
+            width: 100%;
+            margin-bottom: -200px;
+            margin-top: -60px;
+          }
+
+          .character-box-detail-bg {
+            max-width: 400px;
+            min-width: 400px;
+            max-height: 400px;
+            min-height: 400px;
+            background-size: cover;
+          }
+
+          .character-box-detail-xoay {
+            min-height: 478px;
+            min-width: 478px;
+            max-height: 478px;
+            max-width: 478px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1 {
+            width: 100%;
+            max-width: 620px;
+            min-width: 612px;
+            max-height: 520px;
+            min-height: 507px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.nobita {
+            width: 100%;
+            max-width: 620px;
+            min-width: 612px;
+            max-height: 520px;
+            min-height: 507px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.xuka {
+            width: 100%;
+            max-width: 620px;
+            min-width: 612px;
+            max-height: 520px;
+            min-height: 507px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.xeko {
+            width: 100%;
+            max-width: 620px;
+            min-width: 612px;
+            max-height: 520px;
+            min-height: 507px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.chaien {
+            width: 100%;
+            max-width: 620px;
+            min-width: 612px;
+            max-height: 520px;
+            min-height: 507px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character {
+            background: unset;
+          }
+
+          .character-skill-mobile {
+            width: 100%;
+          }
+
+          .character {
+            padding: 72px 72px;
+          }
+
+          .call-to-action {
+            width: 100%;
+          }
+
+          .call-to-action-box-text-1 {
+            font-size: 31px;
+          }
+
+          .call-to-action-box-text-2 {
+            font-size: 48px;
+          }
+
+          .call-to-action-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            width: 100%;
+          }
+
+          .call-to-action-background {
+            width: 100%;
+            padding-top: 100px;
+          }
+
+          .top-news {
+            width: 100%;
+            margin-bottom: -150px;
+            padding: 72px 72px;
+          }
+
+          .introduction-box {
+            margin: 72px 72px;
+          }
+
+          .button-call-to-action-start {
+            width: 199px;
+            height: 60px;
+            background-size: cover;
+          }
+
+          .call-to-action-box-sub-text {
+            font-size: 13px;
+          }
+
+          .call-to-action-box-text-1 {
+            font-size: 26px;
+          }
+
+          .call-to-action-box-text-2 {
+            font-size: 39px;
+          }
+
+          .call-to-action-box-text-3 {
+            width: 100%;
+          }
+
+          .top-news-content-detail-image {
+            display: none;
+          }
+
+          .list-news {
+            align-items: center;
+          }
+
+          .top-news {
+            padding: 10px 10px;
+          }
+
+          .top-news-content-box,
+          .top-news-content-box-title {
+            width: 100%;
+          }
+        }
+
+        @media only screen and (max-width: 875px) {
+          .button-download-game-ios {
+            margin-left: 70px;
+          }
+
+          .button-download-game-android {
+            margin-left: 70px;
+          }
+        }
+
+        @media only screen and (max-width: 640px) {
+          .hero-banner {
+            background: url("images/HomeHeroBannerMobile.png");
+            background-size: cover;
+            height: auto;
+          }
+
+          .slogan {
+            content: url("images/HomeSloganMobile.png");
+            margin-top: 50px;
+            min-width: 360px;
+            min-height: 167px;
+            max-width: 365px;
+            height: unset;
+            max-height: 275px;
+          }
+
+          .download-game {
+            background: url("images/downloadgame-bg-mobile.png") no-repeat;
+            background-size: cover;
+            height: 621px;
+          }
+
+          .download-game-title {
+            visibility: hidden;
+            width: 100%;
+          }
+
+          .download-game-box {
+            margin-top: 51%;
+            margin-right: -31%;
+          }
+
+          .btn-download-game {
+            top: 400px;
+            transform: translate(-49%, 0%);
+          }
+
+          .hero-banner-image {
+            visibility: hidden;
+          }
+
+          .introduction {
+            padding: 0;
+          }
+
+          #character-nobita {
+            content: url("images/character-nobita-mobile.png");
+            max-width: 161px;
+            max-height: 294px;
+            margin: auto;
+          }
+
+          #character-xuka {
+            content: url("images/character-xuka-mobile.png");
+            max-width: 161px;
+            max-height: 294px;
+            margin: auto;
+          }
+
+          .character-box-detail-character {
+            margin-bottom: 0px;
+            margin-top: 50px;
+          }
+
+          #character-xeko {
+            content: url("images/character-xeko-mobile.png");
+            max-width: 161px;
+            max-height: 294px;
+            margin: auto;
+          }
+
+          #character-chaien {
+            content: url("images/character-chaien-mobile.png");
+            max-width: 161px;
+            max-height: 294px;
+            margin: auto;
+          }
+
+          #character-skill-mobile {
+            height: 239px;
+            width: unset;
+          }
+
+          .button-download-game-ios {
+            background-size: 170px 56px;
+            height: 56px;
+            margin-top: 30px;
+            transform: rotate(2deg);
+          }
+
+          .button-download-game-ios:hover {
+            background-size: 170px 56px;
+          }
+
+          .button-download-game-android {
+            background-size: 170px 56px;
+            height: 56px;
+            transform: rotate(2deg);
+            margin-top: -150px;
+          }
+
+          .button-download-game-android:hover {
+            background-size: 170px 56px;
+          }
+
+          .introduction-box {
+            margin: 0;
+            padding: 80px 24px;
+            align-items: center;
+            gap: 32px;
+            align-self: stretch;
+            padding-bottom: 147px;
+          }
+
+          .introduction-box-left-parent {
+            flex-direction: column;
+            display: flex;
+            gap: 0;
+          }
+
+          .introduction-box-left {
+            width: 100%;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .introduction-ex-small-text {
+            font-size: 16px;
+          }
+
+          .introduction-text-cap > h1 {
+            font-size: 25px;
+          }
+
+          .btn-character-game {
+            position: relative;
+            top: 267px;
+            margin: auto;
+          }
+
+          .introduction-box-right {
+            max-height: 212px;
+            margin-top: -80px;
+          }
+
+          .introduction-watch-button {
+            margin-top: 120px;
+          }
+
+          .download-game-box {
+            margin-top: 51%;
+            margin-right: -31%;
+          }
+
+          .character {
+            display: flex;
+            padding: 120px 24px 60px 24px;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            align-self: stretch;
+          }
+
+          .character-box {
+            gap: 0;
+          }
+
+          .character-box-title-text > h1 {
+            font-size: 28px;
+          }
+
+          .character-box-list-character {
+            margin-right: 66%;
+            margin-left: 0;
+          }
+
+          .list-character-select {
+            background-size: cover;
+            width: 56px;
+            height: 56px;
+          }
+
+          .character-box-detail-bg {
+            max-width: 220px;
+            min-width: 220px;
+            max-height: 220px;
+            min-height: 220px;
+            background-size: cover;
+          }
+
+          .character-box-detail-xoay {
+            min-height: 267px;
+            min-width: 267px;
+            max-height: 267px;
+            max-width: 267px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character {
+            height: 300px;
+          }
+
+          .character-box-detail-character-1 {
+            width: 100%;
+            max-width: 327px;
+            min-width: 326px;
+            max-height: 277px;
+            min-height: 277px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.nobita {
+            width: 100%;
+            max-width: 327px;
+            min-width: 326px;
+            max-height: 277px;
+            min-height: 277px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.xeko {
+            width: 100%;
+            max-width: 327px;
+            min-width: 326px;
+            max-height: 277px;
+            min-height: 277px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.chaien {
+            width: 100%;
+            max-width: 327px;
+            min-width: 326px;
+            max-height: 277px;
+            min-height: 277px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-1.xuka {
+            width: 100%;
+            max-width: 327px;
+            min-width: 326px;
+            max-height: 277px;
+            min-height: 277px;
+            background-size: cover;
+          }
+
+          .character-box-detail-character-skill {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            align-self: stretch;
+          }
+
+          .character-box-detail-character-skill.scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+          }
+
+          .character-box-character {
+            height: unset;
+            gap: 10px;
+          }
+
+          .character {
+            padding: 58px 24px 60px 24px;
+          }
+
+          .call-to-action {
+            padding: 0px 24px 80px 24px;
+          }
+
+          .call-to-action-box {
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+          }
+
+          .call-to-action-box-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+          }
+
+          .call-to-action-background {
+            content: url("images/call-to-action-bg-mobile.png");
+            height: unset;
+            margin-top: 300px;
+          }
+        }
+        /*EndMobile*/
+        @media only screen and (max-width: 474px) {
+          main {
+            background-color: #f5fdff;
+            background: url("images/Bell%20pattern%20500.png") no-repeat,
+              #f5fdff;
+          }
+
+          .download-game-box {
+            margin-top: 54%;
+            margin-right: -39%;
+            width: 172px;
+            height: 203px;
+          }
+
+          .button-download-game-pc {
+            height: 88px;
+            align-self: stretch;
+            background: url(images/home-mobile-download-game-pc.png) no-repeat;
+          }
+
+          .button-download-game-pc:hover {
+            height: 88px;
+            background: url("images/PC-hover.png") no-repeat;
+            transition: background 0.3s linear;
+            align-self: stretch;
+          }
+
+          .top-news {
+            margin-bottom: -200px;
+          }
+
+          .button-download-game-ios {
+            margin-left: 0px;
+            margin-bottom: -50px;
+            height: 88px;
+            align-self: stretch;
+            background: url(images/home-mobile-download-game-ios.png) no-repeat;
+          }
+
+          .button-download-game-android {
+            height: 88px;
+            align-self: stretch;
+            background: url(images/home-mobile-download-game-android.png)
+              no-repeat;
+            margin: 0 0 0 0;
+          }
+
+          .character-box-list-character {
+            margin-right: auto;
+            margin-left: 5px;
+          }
+
+          .button-call-to-action-start {
+            margin-top: -16px;
+          }
+        }
+
+        datalistff @media only screen and (max-width: 375px) {
+          .download-game-box {
+          }
+
+          .character-box-list-character {
+            margin-right: 102%;
+          }
+        }
+      </style>
+
+      <picture>
+        <source media="(min-width:1440px)" srcset="images/HomeSlogan.png" />
+        <source
+          media="(max-width:1440px)"
+          srcset="images/HomeSloganTablet.png"
+        />
+        <source
+          media="(max-width:991px)"
+          srcset="images/HomeSloganMobile.png"
+        />
+        <img class="slogan" src="images/HomeSlogan.png" />
+      </picture>
+
+      <section class="hero-banner">
+        <picture class="hero-banner-image">
+          <source
+            media="(min-width:1440px)"
+            srcset="images/HomeHeroBanner.png"
+          />
+          <source
+            media="(max-width:1440px)"
+            srcset="images/HomeHeroBannerTablet.png"
+          />
+          <source
+            media="(max-width:991px)"
+            srcset="images/HomeHeroBannerMobile.png"
+          />
+          <img class="hero-banner-image" src="images/HomeHeroBanner.png" />
+        </picture>
+
+        <div
+          id="btn-download-game-pc"
+          class="btn-download-game btn-download-game-pc"
+        ></div>
+      </section>
+      <section class="introduction">
+        <div class="introduction-box">
+          <div class="introduction-box-left-parent">
+            <div class="introduction-box-left">
+              <div class="introduction-ex-small-box">
+                <span class="introduction-ex-small-text">GIỚI THIỆU</span>
+              </div>
+              <div class="introduction-text-cap">
+                <h1>Nhập vai trải nghiệm các nhân vật trong truyện</h1>
+              </div>
+              <div class="introduction-text-small">
+                Mèo Máy Online là tựa game nhập vai dựa theo cốt truyện của bộ
+                truyện tranh nổi tiếng Doraemon. Người chơi sẽ được trải nghiệm
+                nhập vai vào 4 nhân vật chính là Nobita, Shizuka, Jaian, Suneo
+                và cùng nhau phiêu lưu, khám phá những vùng đất mới đồng thời
+                chạm trán rất nhiều những kẻ thù nguy hiểm
+              </div>
+            </div>
+            <a href="#" id="btn-character-game" class="btn-character-game"> </a>
+          </div>
+          <div class="introduction-box-right">
+            <div class="introduction-box-right-overlay"></div>
+            <div
+              id="introduction-watch-button"
+              class="introduction-watch-button"
+            >
+              <div class="introduction-watch-button-image"></div>
+              <h5 class="introduction-watch-button-text">Xem Trailer</h5>
+            </div>
+            <iframe
+              id="introduce-video"
+              style="visibility: hidden"
+              src="MEO_MAY_HOME_INTRODUCTION_URL.html"
+              title="Video giới thiệu mèo máy online"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen=""
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="download-game" class="download-game">
+        <span class="download-game-title">
+          Tải game <br />
+          ở đây nhé!
+        </span>
+        <div class="download-game-box">
+          <a
+            class="fs-button button-download-game-pc"
+            onclick="showPopup('MEO_MAY_HOME_DOWNLOAD_GAME_PC')"
+          ></a>
+          <a
+            class="fs-button button-download-game-ios"
+            onclick="showPopup('MEO_MAY_HOME_DOWNLOAD_GAME_IOS')"
+          ></a>
+          <a
+            class="fs-button button-download-game-android"
+            onclick="showPopup('MEO_MAY_HOME_DOWNLOAD_GAME_ANDROID')"
+          ></a>
+        </div>
+      </section>
+
+      <div id="popup" class="popup">
+        <!-- Add your popup content here -->
+        <p>This is the popup content.</p>
+        <button onclick="hidePopup()">Close</button>
+      </div>
+
+      <div id="overlay" class="overlay" onclick="hidePopup()"></div>
+
+      <section id="character" class="character">
+        <div class="character-box">
+          <div class="character-box-title">
+            <div class="character-box-title-sub">
+              <span class="character-box-title-sub-text"
+                >GIỚI THIỆU NHÂN VẬT</span
+              >
+            </div>
+            <div class="character-box-title-text">
+              <h1>
+                Tạo hình nhân vật thú vị với <br />
+                các thiết kế độc đáo
+              </h1>
+            </div>
+          </div>
+          <div class="character-box-character">
+            <div class="character-box-list-character">
+              <div
+                data="nobita"
+                class="fs-button list-character-select list-character-select-nobita active"
+                data-target="#carouselExampleIndicators"
+                data-slide-to="0"
+              ></div>
+              <div
+                data="xuka"
+                class="fs-button list-character-select list-character-select-xuka"
+                data-target="#carouselExampleIndicators"
+                data-slide-to="1"
+              ></div>
+              <div
+                data="xeko"
+                class="fs-button list-character-select list-character-select-xeko"
+                data-target="#carouselExampleIndicators"
+                data-slide-to="2"
+              ></div>
+              <div
+                data="chaien"
+                class="fs-button list-character-select list-character-select-chaien"
+                data-target="#carouselExampleIndicators"
+                data-slide-to="3"
+              ></div>
+            </div>
+            <div class="character-box-detail-character">
+              <div class="character-box-detail-bg"></div>
+              <div class="character-box-detail-xoay"></div>
+
+              <div
+                id="carouselExampleIndicators"
+                class="character-box-detail-character-1 carousel slide"
+                data-interval="false"
+                data-bs-touch="false"
+                data-keyboard="false"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      class="d-block w-100"
+                      id="character-nobita"
+                      src="images/character-nobita.png"
+                      alt="First slide"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      id="character-xuka"
+                      src="images/character-xuka-detail.png"
+                      alt="Second slide"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      id="character-xeko"
+                      src="images/character-xeko-detail.png"
+                      alt="Third slide"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      id="character-chaien"
+                      src="images/character-chaien-detail.png"
+                      alt="Third slide"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="character-box-detail-character-skill scroll">
+              <img
+                id="character-skill-mobile"
+                class="character-skill-mobile"
+                src="images/nobita-skill-mobile.png"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="call-to-action">
+        <img
+          src="images/call-to-action-background.png"
+          class="call-to-action-background"
+        />
+        <div class="call-to-action-box">
+          <div class="call-to-action-box-left">
+            <div class="call-to-action-box-sub">
+              <span class="call-to-action-box-sub-text"> SẴN SÀNG </span>
+            </div>
+            <h1 class="call-to-action-box-text-1">Hãy bắt đầu</h1>
+            <h1 class="call-to-action-box-text-2">HÀNH TRÌNH CỦA BẠN</h1>
+            <h5 class="call-to-action-box-text-3">
+              Bạn là người mới? Hãy bắt đầu từ những điều cơ bản nhé!
+            </h5>
+          </div>
+          <div
+            id="button-call-to-action-start"
+            class="fs-button button-call-to-action-start"
+          ></div>
+        </div>
+      </section>
+      <section class="top-news">
+        <div class="top-news-content-box">
+          <div class="top-news-content-box-title">
+            <div class="top-news-content-box-sub">
+              <div class="event-sub-text">
+                <span class="call-to-action-box-sub-text">
+                  TIN TỨC/SỰ KIỆN
+                </span>
+              </div>
+            </div>
+            <h1 class="call-to-action-box-text-1">Các tin nổi bật</h1>
+          </div>
+          <div class="top-news-content-detail">
+            <img
+              src="images/top-news.png"
+              class="top-news-content-detail-image"
+            />
+            <div class="list-news">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="fs-toggle-button active"
+                    id="pills-new-tab"
+                    data-toggle="pill"
+                    href="#pills-news"
+                    role="tab"
+                    aria-controls="pills-home"
+                    aria-selected="true"
+                    >TIN TỨC</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="fs-toggle-button"
+                    id="pills-event-tab"
+                    data-toggle="pill"
+                    href="#pills-event"
+                    role="tab"
+                    aria-controls="pills-profile"
+                    aria-selected="false"
+                    >SỰ KIỆN</a
+                  >
+                </li>
+              </ul>
+              <div class="tab-content fs-news-tab" id="pills-tabContent">
+                <div
+                  class="fs-news-tab tab-pane fade show active"
+                  id="pills-news"
+                  role="tabpanel"
+                  aria-labelledby="pills-news-tab"
+                >
+                  <div class="news-box">
+                    <span class="news-title">Sự kiện Tết 2023</span>
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Công bố kết quả Even Lorem ipsum</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                </div>
+                <div
+                  class="fs-news-tab tab-pane fade"
+                  id="pills-event"
+                  role="tabpanel"
+                  aria-labelledby="pills-event-tab"
+                >
+                  <div class="news-box">
+                    <span class="news-title">Sự kiện Tết 2023</span>
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Công bố kết quả Even Lorem ipsum</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                  <div class="news-box">
+                    <span class="news-title"
+                      >Tiến hành bảo trì để cập nhật phiên bản mới</span
+                    >
+                    <span class="news-date">20/1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        function showPopup(event, downloadType) {
+          var popup = document.getElementById("popup");
+          var overlay = document.getElementById("overlay");
+
+          // Set the popup content based on the download type
+          popup.innerHTML =
+            '<p style="color: var(--Blue-500, #2685DD);font-family: SVN-Impress;font-size: 20px; font-style: normal;font-weight: 400;">Comming soon</p>';
+
+          // Display the popup and overlay
+          popup.style.display = "block";
+          overlay.style.display = "block";
+        }
+
+        function hidePopup() {
+          var popup = document.getElementById("popup");
+          var overlay = document.getElementById("overlay");
+
+          // Hide the popup and overlay
+          popup.style.display = "none";
+          overlay.style.display = "none";
+        }
+      </script>
+
+      <script>
+        function imageclick(url) {
+          window.location.href = url;
+        }
+        $(document).ready(function () {
+          var zDataName = ""; // Initialize zDataName
+          //$('.carousel').carousel('cycle');
+        });
+        // Execute findOverflows to find overflows on the page.
+        $(".list-character-select").on("click", function () {
+          zDataName = $(this).attr("data"); // Update zDataName on click
+          var zData = $(this).attr("data-slide-to");
+
+          if (zDataName === "nobita") {
+            $("#character-skill-mobile").attr(
+              "src",
+              "/images/nobita-skill-mobile.png"
+            );
+          } else if (zDataName === "xuka") {
+            $("#character-skill-mobile").attr(
+              "src",
+              "/images/xuka-skill-mobile.png"
+            );
+          } else if (zDataName === "chaien") {
+            $("#character-skill-mobile").attr(
+              "src",
+              "/images/chaien-skill-mobile.png"
+            );
+          } else if (zDataName === "xeko") {
+            $("#character-skill-mobile").attr(
+              "src",
+              "/images/xeko-skill-mobile.png"
+            );
+          }
+
+          $("#carouselExampleIndicators").carousel(Number(zData));
+          $(".list-character-select").each(function (index) {
+            $(this).removeClass("active");
+            $("#character-box-detail-character-1").removeClass("xeko");
+            $("#character-box-detail-character-1").removeClass("xuka");
+            $("#character-box-detail-character-1").removeClass("chaien");
+            $("#character-box-detail-character-1").removeClass("nobita");
+          });
+          $(this).addClass("active");
+          $("#character-box-detail-character-1").addClass(zData);
+
+          // Optional: Prevent the carousel from auto-advancing
+          $("#carouselExampleIndicators").carousel("pause");
+        });
+
+        $("#btn-download-game-pc").click(function () {
+          $("html,body").animate(
+            {
+              scrollTop: $("#download-game").offset().top,
+            },
+            "fast"
+          );
+        });
+        $("#btn-character-game").click(function () {
+          $("html,body").animate(
+            {
+              scrollTop: $("#character").offset().top,
+            },
+            "fast"
+          );
+        });
+        $("#button-call-to-action-start").click(function () {
+          window.location = "/cam-nang";
+        });
+
+        $("#introduction-watch-button").click(function () {
+          $(".introduction-box-right-overlay").css("visibility", "hidden");
+          $(".introduction-watch-button").css("visibility", "hidden");
+          $("#introduce-video").css("visibility", "visible");
+          var symbol =
+            $("#introduce-video")[0].src.indexOf("?") > -1 ? "&" : "?";
+          //modify source to autoplay and start video
+          $("#introduce-video")[0].src += symbol + "autoplay=1";
+        });
+      </script>
+    </main>
+
+    <footer
+      id="footer-layout"
+      class="max-width-100 fs-container footer text-muted"
+    >
+      <div class="container-footer">
+        <div class="logo-footer-box">
+          <img
+            class="logo-footer"
+            src="images/Logo-mango.png"
+            alt="Logo"
+            width="30"
+            height="24"
+          />
+          <h5 class="text-footer">
+            MÈO MÁY ONLINE được sản xuất và vận hành bởi Công ty TNHH Mango
+            Games <br /><br />
+            Địa chỉ: Tầng 3, số nhà 349, đường Nguyễn Khang, Hà Nội<br /><br />
+            Mã số thuế: 0110108888 - do chi cục thuế quận Cầu Giấy quản lý<br />
+            Giấy phép phát hành số 243/GP-BTTTT của Bộ Thông Tin và Truyền Thông
+            cấp ngày 18-07-2023<br /><br />
+            Trò chơi được cấp chứng nhận bản quyền tác giả với số đăng ký
+            7938/2023/QTG do Cục Quản lý Bản quyền Tác giả, Bộ Văn Hóa, Thể Thao
+            và Du Lịch nước Cộng hoà Xã hội Chủ nghĩa Việt Nam cấp ngày
+            20/09/2023<br /><br />
+            Trò chơi được cấp quyết định phê duyệt nội dung kịch bản tản trò
+            chơi điện tử G1 trên mạng với số đăng ký 2585/QĐ-BTTTT Bộ Thông Tin
+            và Truyền Thông cấp ngày 31-12-2023<br /><br />
+            Địa chỉ email:
+            <a
+              href="/cdn-cgi/l/email-protection"
+              class="__cf_email__"
+              data-cfemail="88e5e9e6efe7efe9e5edfbfee6c8efe5e9e1e4a6ebe7e5"
+              >[email&#160;protected]</a
+            >
+          </h5>
+        </div>
+        <div class="last-footer">
+          <div class="warning-tablet-box">
+            <div class="warning-12-box">
+              <div class="warning-12-number-box">
+                <h2 class="warning-12-number-text">12+</h2>
+              </div>
+              <span class="warning-12-text">
+                DÀNH CHO NGƯỜI CHƠI TRÊN 12 TUỔI</span
+              >
+            </div>
+            <span class="warning-text">
+              Chơi game quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe của
+              bạn
+            </span>
+          </div>
+          <div class="small-box">
+            <div class="social-box">
+              <a href="https://www.facebook.com/meomayonline" target="_blank"
+                ><img
+                  class="footer-social-img"
+                  src="images/facebook.png" /><img
+              /></a>
+              <a href="MEO_MAY_TIKTOK" target="_blank"
+                ><img class="footer-social-img" src="images/tiktok.png"
+              /></a>
+              <a href="MEO_MAY_YOUTUBE" target="_blank"
+                ><img class="footer-social-img" src="images/youtube.png"
+              /></a>
+            </div>
+            <div class="policy-box">
+              <a href="MEO_MAY_FOOTER_CSBM" target="_blank"
+                ><h5 class="policy-text">CHÍNH SÁCH</h5></a
+              >
+              <a href="MEO_MAY_FOOTER_DKSD" target="_blank"
+                ><h5 class="policy-text">ĐIỀU KHOẢN</h5></a
+              >
+              <a href="MEO_MAY_FOOTER_CHTG" target="_blank"
+                ><h5 class="policy-text">BÁO LỖI</h5></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <section class="warning">
+      <div class="warning-12-box">
+        <div class="warning-12-number-box">
+          <h2 class="warning-12-number-text">12+</h2>
+        </div>
+        <span class="warning-12-text"> DÀNH CHO NGƯỜI CHƠI TRÊN 12 TUỔI</span>
+      </div>
+      <span class="warning-text">
+        Chơi game quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe của bạn
+      </span>
+    </section>
+    <div id="to-top-arrow" class="to-top-arrow">
+      <img src="images/to-top-arrow.png" />
+    </div>
+
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js" asp-append-version="true"></script>
+    <script>
+      $(".btn-nav").on("click", function () {
+        $(".btn-nav").each(function (index) {
+          $(this).removeClass("active");
+        });
+        $(this).addClass("active");
+      });
+
+      $("#btn-download-game").click(function () {
+        $("html,body").animate(
+          {
+            scrollTop: $(".download-game").offset().top,
+          },
+          "fast"
+        );
+      });
+      $("#to-top-arrow").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 100), "fast";
+      });
+      function myFunction() {
+        var x = document.getElementById("fs-sidemenu");
+        if (x.style.display === "flex") {
+          x.classList.add("dismiss");
+          x.classList.remove("selected");
+          x.style.display = "none";
+        } else {
+          x.style.display = "flex";
+          x.classList.add("selected");
+          x.classList.remove("dismiss");
+        }
+      }
+    </script>
+    <!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        $('body').addClass('stop-scrolling')
+        document.body.style.overflow = 'hidden';
+        function calculateLoadingDuration() {
+            const downlink = navigator.connection.downlink;
+            const loadingDuration = Math.max(180, downlink * 180);
+            return loadingDuration;
+        }
+        function updateLoadingScreen() {
+            if (document.readyState === 'complete') {
+                document.getElementById("loading-screen").style.display = "none";
+                $('body').removeClass('stop-scrolling')
+                document.body.style.overflow = '';
+
+            } else {
+                setTimeout(function () {
+                    document.getElementById("loading-screen").style.display = "none";
+                    $('body').removeClass('stop-scrolling');
+                    document.body.style.overflow = '';
+                }, calculateLoadingDuration() * 100);
+            }
+        }
+        setTimeout(function () {
+            updateLoadingScreen();
+        }, calculateLoadingDuration());
+    });
+</script> -->
+  </body>
+</html>
